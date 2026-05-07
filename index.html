@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Intel PAM — Datacenter Project Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f1;
+  --surface: #ffffff;
+  --surface2: #f9f8f6;
+  --surface3: #f0efe9;
+  --border: #e4e2db;
+  --border2: #d0cec5;
+  --accent: #1a1a1a;
+  --blue: #1d4ed8; --blue-bg: #eff6ff; --blue-border: #bfdbfe;
+  --green: #15803d; --green-bg: #f0fdf4; --green-border: #bbf7d0;
+  --amber: #b45309; --amber-bg: #fffbeb; --amber-border: #fde68a;
+  --red: #b91c1c; --red-bg: #fef2f2; --red-border: #fecaca;
+  --purple: #6d28d9; --purple-bg: #f5f3ff; --purple-border: #ddd6fe;
+  --owner: #0c447c; --owner-bg: #e6f1fb; --owner-border: #85b7eb;
+  --epc: #27500a; --epc-bg: #eaf3de; --epc-border: #97c459;
+  --design: #712b13; --design-bg: #faece7; --design-border: #f0997b;
+  --pm: #3c3489; --pm-bg: #eeedfe; --pm-border: #afa9ec;
+  --text: #1a1a1a; --text2: #6b6b6b; --text3: #9ca3af;
+  --radius: 8px; --radius-lg: 12px;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: var(--sans); font-size: 14px; color: var(--text); background: var(--bg); overflow: hidden; }
+
+.app { display: grid; grid-template-rows: 52px 44px 1fr; grid-template-columns: 260px 1fr; height: 100vh; }
+.navbar { grid-column: 1/-1; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.topbar { grid-column: 1/-1; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+.sidebar { background: var(--surface); border-right: 1px solid var(--border); overflow-y: auto; padding: 12px 10px; }
+.main { overflow-y: auto; display: flex; flex-direction: column; }
+
+/* NAV */
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo-mark { width: 28px; height: 28px; background: var(--text); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-mark svg { width: 16px; height: 16px; }
+.logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.02em; }
+.logo-name span { color: var(--blue); }
+.search-wrap { flex: 1; max-width: 400px; margin-left: 12px; position: relative; }
+.search-wrap input { width: 100%; height: 32px; background: var(--surface2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0 10px 0 32px; font-family: var(--mono); font-size: 12px; color: var(--text); outline: none; }
+.search-wrap input:focus { border-color: var(--blue); }
+.search-ic { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text3); width: 14px; height: 14px; }
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.count-pill { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); border-radius: 20px; padding: 3px 10px; font-family: var(--mono); font-size: 11px; font-weight: 500; }
+.btn { height: 30px; border: 1px solid var(--border2); border-radius: var(--radius); padding: 0 12px; font-family: var(--sans); font-size: 12px; cursor: pointer; background: var(--surface); color: var(--text2); display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s; white-space: nowrap; }
+.btn:hover { border-color: var(--border2); background: var(--surface3); }
+.btn-export-crm { background: var(--green-bg); color: var(--green); border-color: var(--green-border); font-weight: 500; }
+.btn-export-crm:hover { background: #dcfce7; }
+.btn-danger:hover { border-color: var(--red-border); color: var(--red); }
+
+/* TOPBAR */
+.view-tabs { display: flex; gap: 2px; }
+.vtab { height: 28px; border: 1px solid transparent; border-radius: var(--radius); padding: 0 10px; font-size: 12px; cursor: pointer; background: transparent; color: var(--text3); display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s; }
+.vtab.active { background: var(--surface); border-color: var(--border2); color: var(--text); font-weight: 500; }
+.vtab:hover:not(.active) { color: var(--text2); }
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); }
+.sort-select { height: 28px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 8px; font-family: var(--sans); font-size: 12px; color: var(--text); background: var(--surface); outline: none; cursor: pointer; }
+
+/* SIDEBAR */
+.fs { margin-bottom: 2px; }
+.fh { display: flex; align-items: center; justify-content: space-between; padding: 7px 8px; cursor: pointer; border-radius: var(--radius); user-select: none; }
+.fh:hover { background: var(--surface2); }
+.fh-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); }
+.fh-arrow { font-size: 9px; color: var(--text3); transition: transform 0.2s; }
+.fh.open .fh-arrow { transform: rotate(180deg); }
+.fb { padding: 2px 4px 8px; display: none; }
+.fb.open { display: block; }
+.ci { display: flex; align-items: center; gap: 7px; padding: 3px 4px; cursor: pointer; border-radius: 5px; }
+.ci:hover { background: var(--surface3); }
+.ci input[type=checkbox] { accent-color: var(--blue); width: 13px; height: 13px; flex-shrink: 0; cursor: pointer; }
+.ci label { font-size: 12px; color: var(--text2); cursor: pointer; flex: 1; line-height: 1.3; }
+.ci .cc { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.phase-btns { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; }
+.phase-btn { border: 1px solid var(--border2); border-radius: 20px; padding: 3px 9px; font-size: 11px; color: var(--text2); cursor: pointer; background: var(--surface); transition: all 0.12s; user-select: none; }
+.phase-btn.active { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); font-weight: 500; }
+.range-group { padding: 4px 4px 8px; }
+.range-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.range-row input[type=range] { flex: 1; accent-color: var(--blue); height: 4px; }
+.rv { font-family: var(--mono); font-size: 11px; color: var(--blue); min-width: 52px; text-align: right; }
+.rl { font-size: 11px; color: var(--text3); }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px 4px 8px; }
+.tp { border: 1px solid var(--border); border-radius: 20px; padding: 3px 9px; font-size: 11px; color: var(--text2); cursor: pointer; background: var(--surface); transition: all 0.12s; user-select: none; }
+.tp.active { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); }
+.role-filters { display: flex; flex-direction: column; gap: 3px; padding: 4px 4px 8px; }
+.rf-item { display: flex; align-items: center; gap: 7px; padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: all 0.12s; user-select: none; }
+.rf-item.active-owner { background: var(--owner-bg); border-color: var(--owner-border); }
+.rf-item.active-epc { background: var(--epc-bg); border-color: var(--epc-border); }
+.rf-item.active-design { background: var(--design-bg); border-color: var(--design-border); }
+.rf-item.active-pm { background: var(--pm-bg); border-color: var(--pm-border); }
+.rf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.rf-label { font-size: 12px; color: var(--text2); }
+
+/* CARDS VIEW */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 14px 16px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; position: relative; }
+.card:hover { border-color: var(--border2); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card-phase-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.phase-bar-announced { background: var(--amber); }
+.phase-bar-admin { background: var(--blue); }
+.phase-bar-construction { background: var(--green); }
+.phase-bar-completed { background: var(--text3); }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; margin-top: 6px; }
+.badge-row { display: flex; gap: 4px; flex-wrap: wrap; }
+.b { display: inline-flex; align-items: center; border-radius: 5px; padding: 2px 7px; font-size: 10px; font-weight: 600; letter-spacing: 0.03em; }
+.b-phase-announced { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.b-phase-admin { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.b-phase-construction { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.b-type { background: var(--surface3); color: var(--text2); border: 1px solid var(--border); }
+.b-fund-conf { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.b-fund-unc { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.card-name { font-size: 13px; font-weight: 500; line-height: 1.4; color: var(--text); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-loc { font-size: 11px; color: var(--text3); margin-bottom: 10px; }
+.card-metrics { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.metric-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; }
+.mc-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+.mc-val { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--text); }
+.card-contacts-preview { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+.role-pill { border-radius: 4px; padding: 2px 7px; font-size: 10px; font-weight: 500; border: 1px solid; }
+.rp-owner { background: var(--owner-bg); color: var(--owner); border-color: var(--owner-border); }
+.rp-epc { background: var(--epc-bg); color: var(--epc); border-color: var(--epc-border); }
+.rp-design { background: var(--design-bg); color: var(--design); border-color: var(--design-border); }
+.rp-pm { background: var(--pm-bg); color: var(--pm); border-color: var(--pm-border); }
+.card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); }
+.momentum { display: flex; gap: 3px; }
+.md { width: 16px; height: 4px; border-radius: 2px; background: var(--border); }
+.md.m0 { background: var(--text3); }
+.md.m12 { background: var(--amber); }
+.md.m34 { background: var(--blue); }
+.md.m5 { background: var(--green); }
+.card-link-txt { font-size: 11px; color: var(--blue); }
+
+/* PIPELINE VIEW */
+.pipeline-view { padding: 16px; overflow-x: auto; }
+.pipeline-cols { display: flex; gap: 12px; min-width: 900px; }
+.pipeline-col { flex: 1; min-width: 220px; }
+.pipeline-col-header { padding: 8px 12px; border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 8px; }
+.pch-announced { background: var(--amber-bg); border: 1px solid var(--amber-border); border-bottom: none; }
+.pch-admin { background: var(--blue-bg); border: 1px solid var(--blue-border); border-bottom: none; }
+.pch-construction { background: var(--green-bg); border: 1px solid var(--green-border); border-bottom: none; }
+.pch-completed { background: var(--surface3); border: 1px solid var(--border); border-bottom: none; }
+.pch-title { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.pch-announced .pch-title { color: var(--amber); }
+.pch-admin .pch-title { color: var(--blue); }
+.pch-construction .pch-title { color: var(--green); }
+.pch-completed .pch-title { color: var(--text3); }
+.pch-count { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 2px; }
+.pipeline-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; margin-bottom: 6px; cursor: pointer; transition: border-color 0.12s; }
+.pipeline-card:hover { border-color: var(--border2); }
+.pc-name { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 5px; }
+.pc-loc { font-size: 10px; color: var(--text3); margin-bottom: 6px; }
+.pc-bottom { display: flex; align-items: center; justify-content: space-between; }
+.pc-val { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--blue); }
+.pc-contacts { display: flex; gap: 3px; }
+.pc-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* TABLE VIEW */
+.table-wrap { padding: 14px 16px; overflow-x: auto; }
+.proj-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.proj-table th { padding: 8px 12px; text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); border-bottom: 1px solid var(--border); background: var(--surface2); white-space: nowrap; }
+.proj-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.proj-table tr { background: var(--surface); cursor: pointer; }
+.proj-table tr:hover td { background: var(--surface2); }
+.td-name { font-weight: 500; color: var(--text); max-width: 240px; }
+.td-name small { display: block; font-size: 10px; color: var(--text3); font-weight: 400; margin-top: 1px; }
+
+/* DETAIL PANEL */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.25); z-index: 200; display: none; }
+.overlay.open { display: block; }
+.panel { position: fixed; right: 0; top: 0; bottom: 0; width: 660px; max-width: 95vw; background: var(--surface); border-left: 1px solid var(--border2); z-index: 201; overflow-y: auto; transform: translateX(100%); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; }
+.panel.open { transform: translateX(0); }
+.panel-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); z-index: 10; }
+.panel-close { position: absolute; top: 14px; right: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; color: var(--text2); transition: all 0.15s; }
+.panel-close:hover { border-color: var(--red-border); color: var(--red); }
+.panel-title { font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--text); padding-right: 40px; margin-bottom: 10px; }
+.panel-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.panel-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.panel-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+.sec-head { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.sec-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* metrics */
+.metrics-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.mk { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; flex: 1; min-width: 100px; }
+.mk-label { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
+.mk-val { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--text); }
+.mk-unit { font-size: 10px; color: var(--text3); }
+
+/* timeline */
+.tl { display: flex; align-items: flex-start; gap: 0; margin: 4px 0 8px; }
+.tl-node { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.tl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.tl-line { flex: 1; height: 2px; background: var(--border); margin-top: 4px; }
+.tl-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-align: center; max-width: 80px; line-height: 1.4; }
+.tl-progress { flex: 1; height: 2px; background: var(--border); margin-top: 4px; position: relative; overflow: visible; }
+.tl-progress-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--blue); }
+
+/* contacts */
+.contact-tabs { display: flex; gap: 4px; margin-bottom: 12px; flex-wrap: wrap; }
+.ctab { height: 28px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 10px; font-size: 11px; cursor: pointer; background: var(--surface2); color: var(--text2); display: inline-flex; align-items: center; gap: 5px; transition: all 0.12s; }
+.ctab.active-owner { background: var(--owner-bg); border-color: var(--owner-border); color: var(--owner); font-weight: 500; }
+.ctab.active-epc { background: var(--epc-bg); border-color: var(--epc-border); color: var(--epc); font-weight: 500; }
+.ctab.active-design { background: var(--design-bg); border-color: var(--design-border); color: var(--design); font-weight: 500; }
+.ctab.active-pm { background: var(--pm-bg); border-color: var(--pm-border); color: var(--pm); font-weight: 500; }
+.ctab-dot { width: 7px; height: 7px; border-radius: 50%; }
+.contact-cards { display: flex; flex-direction: column; gap: 8px; }
+.cc-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+.cc-company { font-size: 13px; font-weight: 500; color: var(--text); }
+.cc-person { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.cc-title { font-size: 11px; color: var(--text3); }
+.cc-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.cc-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); text-decoration: none; background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 5px; padding: 3px 8px; }
+.cc-link:hover { background: #dbeafe; }
+.cc-link-li { color: var(--purple); background: var(--purple-bg); border-color: var(--purple-border); }
+.cc-link-ph { color: var(--green); background: var(--green-bg); border-color: var(--green-border); }
+
+/* tenders */
+.tenders-list { display: flex; flex-direction: column; gap: 8px; }
+.tender-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; }
+.tender-name { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+.tender-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.tender-pill { font-size: 10px; color: var(--text2); background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; }
+.tender-awarded { font-size: 10px; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 4px; padding: 2px 7px; font-weight: 500; }
+.tender-open { font-size: 10px; color: var(--amber); background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: 4px; padding: 2px 7px; font-weight: 500; }
+
+/* updates */
+.updates { display: flex; flex-direction: column; gap: 7px; }
+.upd { display: flex; gap: 10px; align-items: flex-start; }
+.upd-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 5px; }
+.upd-text { font-size: 12px; color: var(--text2); line-height: 1.55; }
+
+/* overview accordion */
+.overview-summary { font-size: 12px; color: var(--text2); line-height: 1.65; }
+.overview-full { font-size: 12px; color: var(--text2); line-height: 1.65; margin-top: 8px; display: none; }
+.overview-full.open { display: block; }
+.read-more { font-size: 11px; color: var(--blue); cursor: pointer; margin-top: 5px; background: none; border: none; padding: 0; }
+
+/* pagination */
+.pagination { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 14px 16px; }
+.pb { height: 30px; min-width: 30px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 8px; font-family: var(--mono); font-size: 12px; cursor: pointer; background: var(--surface); color: var(--text2); transition: all 0.12s; }
+.pb:hover { background: var(--surface2); border-color: var(--border2); }
+.pb.active { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); font-weight: 500; }
+.pb:disabled { opacity: 0.35; cursor: default; }
+
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; gap: 8px; color: var(--text3); font-size: 13px; grid-column: 1/-1; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16" fill="white"><rect x="1" y="2" width="14" height="3" rx="1"/><rect x="1" y="6.5" width="14" height="3" rx="1"/><rect x="1" y="11" width="14" height="3" rx="1"/><circle cx="13" cy="3.5" r="1" fill="#60a5fa"/><circle cx="13" cy="8" r="1" fill="#4ade80"/><circle cx="13" cy="12.5" r="1" fill="#fbbf24"/></svg>
+    </div>
+    <span class="logo-name">DC<span>Intel</span> PAM</span>
+  </div>
+  <div class="search-wrap">
+    <svg class="search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Rechercher projet, pays, entreprise, attribut…">
+  </div>
+  <div class="nav-right">
+    <div class="count-pill" id="countBadge">0 projets</div>
+    <span id="data-status" style="font-size:11px;color:var(--text3);font-family:var(--mono)">Chargement…</span>
+    <button class="btn" onclick="loadData()" title="Recharger les données">↻ Refresh</button>
+    <button class="btn btn-export-crm" onclick="exportContactsCRM()">↓ Export contacts CRM</button>
+    <button class="btn btn-danger" onclick="clearAll()">Effacer filtres</button>
+  </div>
+</nav>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="view-tabs">
+    <button class="vtab active" id="tab-cards" onclick="setView('cards')">⊞ Cartes</button>
+    <button class="vtab" id="tab-pipeline" onclick="setView('pipeline')">⋮⋮ Pipeline</button>
+    <button class="vtab" id="tab-table" onclick="setView('table')">≡ Tableau</button>
+  </div>
+  <div class="topbar-right">
+    <span>Trier par</span>
+    <select class="sort-select" id="sortSel" onchange="applyFilters()">
+      <option value="momentum">Momentum ↓</option>
+      <option value="value-desc">Budget ↓</option>
+      <option value="value-asc">Budget ↑</option>
+      <option value="start">Démarrage</option>
+      <option value="name">Nom A–Z</option>
+    </select>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Phase projet</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open">
+      <div class="phase-btns">
+        <div class="phase-btn" onclick="togglePhase(this,'announced')">Annoncé</div>
+        <div class="phase-btn" onclick="togglePhase(this,'admin')">Admin / Permis</div>
+        <div class="phase-btn" onclick="togglePhase(this,'construction')">Construction</div>
+        <div class="phase-btn" onclick="togglePhase(this,'completed')">Terminé</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Contacts présents</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open">
+      <div class="role-filters">
+        <div class="rf-item" onclick="toggleRole(this,'owner')" data-role="owner"><div class="rf-dot" style="background:var(--owner)"></div><span class="rf-label">Project Owner / Developer</span></div>
+        <div class="rf-item" onclick="toggleRole(this,'epc')" data-role="epc"><div class="rf-dot" style="background:var(--epc)"></div><span class="rf-label">EPC / Main Contractor</span></div>
+        <div class="rf-item" onclick="toggleRole(this,'design')" data-role="design"><div class="rf-dot" style="background:var(--design)"></div><span class="rf-label">Engineering Design Consultant</span></div>
+        <div class="rf-item" onclick="toggleRole(this,'pm')" data-role="pm"><div class="rf-dot" style="background:var(--pm)"></div><span class="rf-label">Project Management</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Région EMEA</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open" id="filter-region"></div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Pays</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open" id="filter-country"></div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Budget (USD M)</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open">
+      <div class="range-group">
+        <div class="rl">Min : <span id="rvMin">0</span>M</div>
+        <div class="range-row"><input type="range" step="1" id="rMin" min="0" max="22000" value="0" oninput="upRange()"></div>
+        <div class="rl" style="margin-top:8px">Max : <span id="rvMax">22 000</span>M</div>
+        <div class="range-row"><input type="range" step="1" id="rMax" min="0" max="22000" value="22000" oninput="upRange()"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Momentum</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open" id="filter-momentum"></div>
+  </div>
+
+  <div class="fs">
+    <div class="fh open" onclick="tf(this)"><span class="fh-label">Attributs</span><span class="fh-arrow">▼</span></div>
+    <div class="fb open"><div class="tag-cloud" id="filter-attrs"></div></div>
+  </div>
+
+  <div class="fs">
+    <div class="fh" onclick="tf(this)"><span class="fh-label">Financement</span><span class="fh-arrow">▼</span></div>
+    <div class="fb" id="filter-funding"></div>
+  </div>
+
+  <div class="fs">
+    <div class="fh" onclick="tf(this)"><span class="fh-label">Type projet</span><span class="fh-arrow">▼</span></div>
+    <div class="fb">
+      <div class="ci"><input type="checkbox" id="tp-parent" value="Parent" onchange="applyFilters()"><label for="tp-parent">Parent</label></div>
+      <div class="ci"><input type="checkbox" id="tp-sub" value="Sub" onchange="applyFilters()"><label for="tp-sub">Sous-phase</label></div>
+    </div>
+  </div>
+
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="mainArea">
+  <div id="viewCards">
+    <div class="cards-grid" id="cardsGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+  <div id="viewPipeline" style="display:none" class="pipeline-view">
+    <div class="pipeline-cols" id="pipelineCols"></div>
+  </div>
+  <div id="viewTable" style="display:none" class="table-wrap">
+    <table class="proj-table" id="projTable">
+      <thead><tr>
+        <th>Projet</th><th>Pays</th><th>Phase</th><th>Budget</th><th>MW</th><th>Démarrage</th><th>Momentum</th><th>Contacts</th><th>Financement</th>
+      </tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</main>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="panel" id="panel">
+  <div class="panel-header">
+    <button class="panel-close" onclick="closePanel()">✕</button>
+    <div class="panel-title" id="panelTitle"></div>
+    <div class="panel-meta" id="panelMeta"></div>
+    <div class="panel-actions" id="panelActions"></div>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</div>
+
+<script>
+const FLAGS = {Sweden:'🇸🇪','United Kingdom':'🇬🇧',Spain:'🇪🇸',Germany:'🇩🇪',France:'🇫🇷',Netherlands:'🇳🇱',Ireland:'🇮🇪',Portugal:'🇵🇹',Italy:'🇮🇹',Finland:'🇫🇮',Morocco:'🇲🇦',Latvia:'🇱🇻',Monaco:'🇲🇨',Norway:'🇳🇴',Denmark:'🇩🇰',Poland:'🇵🇱',UAE:'🇦🇪'};
+
+const ROLE_MAP = {
+  'Project Owner':'owner','Developer':'owner','Owner':'owner',
+  'Contractor':'epc','Main Contractor':'epc','EPC':'epc',
+  'Engineering Design Consultant':'design','Lead Consultant':'design','Planner':'design',
+  'Project Management Consultant':'pm','Study Consultant':'pm','Client Manager':'pm'
+};
+function roleKey(roleStr) {
+  if (!roleStr) return null;
+  for (const [k,v] of Object.entries(ROLE_MAP)) if (roleStr.includes(k)) return v;
+  return null;
+}
+
+const PROJECTS = [
+  {id:"DC001",name:"Brookfield AI Data Center Campus – Strängnäs",type:"Parent",value:10000,region:"Europe",country:"Sweden",city:"Strängnäs",announced:"2024 Q2",start:"2025 Q2",end:"2028 Q4",phase:"construction",overview:"Brookfield Asset Management is developing one of Europe's largest AI data center campuses in Strängnäs, Sweden. The facility will scale from 300 MW to 750 MW of IT load, covering a 350,000 m² footprint. The campus is powered by 100% renewable energy.",summaryShort:"Campus AI 750 MW à Strängnäs, Suède. Investissement SEK 95 milliards. Scale-up confirmé en juin 2025.",attributes:["Hyperscale Data Center","AI Infrastructure","Green data center","Renewable Energy"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://brookfield.com",contacts:[{role:"Project Owner",company:"Brookfield Asset Management",person:"",title:"",email:"",tel:"",linkedin:"brookfield.com"},{role:"Partner",company:"Strängnäs Municipality",person:"",title:"",email:"",tel:"",linkedin:""}],metrics:[{p:"IT Capacity",v:"750",u:"MW"},{p:"Site Area",v:"350 000",u:"m²"}],tenders:[],updates:["Juin 2025 – Scale-up de 300 MW à 750 MW confirmé.","2024 Q2 – Investissement annoncé à SEK 95 milliards."]},
+
+  {id:"DC002",name:"DC01UK – Hertfordshire AI & Cloud Hub",type:"Parent",value:4800,region:"Europe",country:"United Kingdom",city:"Hertfordshire",announced:"2023 Q4",start:"2025 Q1",end:"2030 Q2",phase:"construction",overview:"DC01UK is a £3.75 billion hyperscale AI and cloud campus that has gained planning approval in Hertfordshire, UK. Targeting to become one of Europe's largest AI and cloud hubs.",summaryShort:"Campus hyperscale AI £3.75Mrd en Hertfordshire. Permis obtenu. Parmi les plus grands d'Europe.",attributes:["Hyperscale Data Center","AI Infrastructure","Colocation Data Center","Tier 3 Data Center"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://dc01uk.com",contacts:[{role:"Project Owner",company:"DC01UK Ltd",person:"",title:"CEO",email:"",tel:"",linkedin:""}],metrics:[{p:"Investment",v:"3 750",u:"GBP M"}],tenders:[{name:"EPC Main Works",type:"Engineering Procurement and Construction (EPC)",issue:"2025 Q1",submission:"2025 Q2",award:"2025 Q3",awardedTo:"",shortlisted:""}],updates:["2025 Q1 – Permis d'urbanisme accordé.","2023 Q4 – Projet annoncé."]},
+
+  {id:"DC003",name:"Blackstone Data Center Campus – Aragon",type:"Parent",value:8300,region:"Europe",country:"Spain",city:"Zaragoza",announced:"2023 Q3",start:"2026 Q1",end:"2030 Q4",phase:"admin",overview:"Blackstone is developing a €7.5 billion, 300 MW data center campus in the Aragon region of Spain. Concession 150 MW approuvée par Red Eléctrica. Déclaration d'intérêt général (DIGA) obtenue.",summaryShort:"300 MW, €7.5Mrd en Aragon. DIGA obtenu. Concession 150 MW approuvée Red Eléctrica 2024.",attributes:["Hyperscale Data Center","Green data center","Renewable Energy","Colocation Data Center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"",contacts:[{role:"Project Owner",company:"Blackstone Inc.",person:"",title:"",email:"",tel:"",linkedin:"blackstone.com"}],metrics:[{p:"Consumption Capacity",v:"300",u:"MW"}],tenders:[{name:"EPC General Contractor",type:"Engineering Procurement and Construction (EPC)",issue:"2026 Q1",submission:"2026 Q2",award:"2026 Q3",awardedTo:"",shortlisted:""}],updates:["2024 Q4 – Concession 150 MW approuvée Red Eléctrica.","2024 Q2 – DIGA accordé par la Région Aragon.","2023 Q3 – Investissement annoncé."]},
+
+  {id:"DC004",name:"Meta Data Center Campus – Talavera de la Reina",type:"Parent",value:830,region:"Europe",country:"Spain",city:"Talavera de la Reina",announced:"2024 Q2",start:"2025 Q1",end:"2028 Q2",phase:"construction",overview:"Meta Platforms construit un campus datacenter de 191 hectares à Talavera de la Reina, Castilla-La Mancha, Espagne. Investissement €750M, 250 emplois directs créés.",summaryShort:"Campus 191 ha pour Meta en Espagne. €750M. 250 emplois directs. Construction démarrée Q1 2025.",attributes:["Hyperscale Data Center","AI Infrastructure"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://meta.com",contacts:[{role:"Project Owner",company:"Meta Platforms Inc.",person:"",title:"",email:"",tel:"",linkedin:"meta.com"}],metrics:[{p:"Site Area",v:"191",u:"ha"}],tenders:[{name:"EPC Works",type:"EPC",issue:"2024 Q3",submission:"2024 Q4",award:"2024 Q4",awardedTo:"FCC Construccion",shortlisted:""}],updates:["2025 Q1 – Construction démarrée.","2024 Q2 – Annonce officielle."]},
+
+  {id:"DC005",name:"CyrusOne FRA7 – Frankfurt Westside",type:"Parent",value:1100,region:"Europe",country:"Germany",city:"Frankfurt",announced:"2023 Q3",start:"2024 Q3",end:"2029 Q2",phase:"construction",overview:"CyrusOne développe FRA7, 126 MW sur 63 000 m² à Frankfurt Westside. Partenariat avec BEOS AG et Swiss Life. E.ON fournira 61 MW de capacité supplémentaire d'ici 2029. 40 MW de chaleur fatale vers le réseau urbain.",summaryShort:"126 MW, €1Mrd Frankfurt. Partenariat E.ON pour centrale gaz sur site. Chaleur fatale 40 MW réseau urbain.",attributes:["Hyperscale Data Center","Colocation Data Center","Green data center","Waste Heat Recovery"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://cyrusone.com",contacts:[{role:"Project Owner",company:"CyrusOne",person:"",title:"",email:"",tel:"",linkedin:"cyrusone.com"},{role:"Partner",company:"BEOS AG",person:"",title:"",email:"",tel:"+49 30 2001680",linkedin:"beos.de"},{role:"Engineering Design Consultant",company:"E.ON SE",person:"",title:"Project Manager",email:"",tel:"+49 201 184-00",linkedin:"eon.com"}],metrics:[{p:"IT Capacity",v:"126",u:"MW"},{p:"Site Area",v:"63 000",u:"m²"},{p:"Power Supply",v:"150",u:"MVA"}],tenders:[{name:"On-site Power System",type:"Design Build",issue:"2024 Q4",submission:"2025 Q1",award:"2025 Q2",awardedTo:"E.ON SE",shortlisted:"E.ON SE, RWE"}],updates:["Mai 2025 – Partenariat E.ON annoncé pour centrale gaz 61 MW.","Juillet 2024 – Pose de première pierre.","Septembre 2023 – Projet annoncé."]},
+
+  {id:"DC006",name:"Virtus Berlin Campus (1–4)",type:"Parent",value:600,region:"Europe",country:"Germany",city:"Berlin",announced:"2023 Q2",start:"2025 Q2",end:"2027 Q4",phase:"construction",overview:"Campus 57.6 MW composé de 4 bâtiments 14.4 MW sur 19 000 m² à Berlin. Partenariat DATA2HEAT pour alimenter ~5 000 foyers en chaleur. PUE <1.2, 100% renouvelable, Tier III.",summaryShort:"57.6 MW, 4 bâtiments Berlin. 100% renouvelable, Tier III, PUE<1.2. Chaleur fatale pour 5 000 foyers.",attributes:["Hyperscale Data Center","Green data center","Tier 3 Data Center","Renewable Energy","Waste Heat Recovery"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://virtusdatacentres.com",contacts:[{role:"Project Owner",company:"Virtus Data Centers",person:"",title:"",email:"",tel:"",linkedin:"virtusdatacentres.com"},{role:"Project Management Consultant",company:"ST Telemedia Global Data Centers",person:"",title:"",email:"",tel:"",linkedin:""}],metrics:[{p:"IT Capacity",v:"57.6",u:"MW"},{p:"Technical Space",v:"19 000",u:"m²"},{p:"PUE",v:"<1.2",u:""}],tenders:[],updates:["Juillet 2025 – Pose de première pierre Berlin 1.","Juin 2025 – Annonce campus complet.","Mai 2023 – Berlin 1 annoncé."]},
+
+  {id:"DC007",name:"Brookfield / Data4 – Programme France AI",type:"Parent",value:22000,region:"Europe",country:"France",city:"Plusieurs sites",announced:"2025 Q1",start:"2026 Q1",end:"2030 Q4",phase:"announced",overview:"Brookfield Asset Management s'engage à investir €20 milliards en France sur 5 ans pour des datacenters AI. €15 milliards pilotés par Data4. Le reste couvre l'infrastructure AI (transfert de données, stockage GPU, production d'énergie).",summaryShort:"€20Mrd sur 5 ans en France. €15Mrd via Data4. Plus grand programme AI datacenter annoncé en Europe.",attributes:["Hyperscale Data Center","AI Infrastructure","Green data center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://data4.com",contacts:[{role:"Project Owner",company:"Brookfield Asset Management",person:"",title:"",email:"",tel:"",linkedin:"brookfield.com"},{role:"Developer",company:"Data4",person:"",title:"CEO",email:"",tel:"+33 1 85 09 25 25",linkedin:"data4.com"}],metrics:[{p:"Total Investment",v:"20 000",u:"EUR M"}],tenders:[],updates:["Mars 2025 – Engagement €20Mrd France annoncé.","2025 Q1 – Programme lancé."]},
+
+  {id:"DC008",name:"Digital Realty AMS11 – Amsterdam",type:"Parent",value:250,region:"Europe",country:"Netherlands",city:"Amsterdam",announced:"2024 Q4",start:"2025 Q2",end:"2026 Q4",phase:"construction",overview:"Digital Realty lance son 12ème datacenter aux Pays-Bas. AMS11 ajoute 27 MW de capacité IT sur 12 000 m², portant le total à 159 MW dans le pays.",summaryShort:"12ème DC Digital Realty en NL. 27 MW, 12 000 m². Capacité totale NL portée à 159 MW.",attributes:["Colocation Data Center","Hyperscale Data Center"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://digitalrealty.com",contacts:[{role:"Project Owner",company:"Digital Realty Trust",person:"",title:"VP Development",email:"",tel:"+1 415 738 6500",linkedin:"digitalrealty.com"}],metrics:[{p:"IT Capacity",v:"27",u:"MW"},{p:"Floor Area",v:"12 000",u:"m²"}],tenders:[{name:"MEP Works",type:"Design Build",issue:"2025 Q1",submission:"2025 Q2",award:"2025 Q2",awardedTo:"Imtech",shortlisted:"Imtech, Engie"}],updates:["Décembre 2025 – AMS11 lancé.","2024 Q4 – Annoncé."]},
+
+  {id:"DC009",name:"Blackstone Northumberland – AI Facility Europe",type:"Parent",value:12600,region:"Europe",country:"United Kingdom",city:"Northumberland",announced:"2024 Q1",start:"2026 Q1",end:"2031 Q4",phase:"admin",overview:"Blackstone développe un campus AI £10 milliards en Northumberland. Potentiellement le plus grand datacenter AI d'Europe. Plus de 4 000 emplois créés.",summaryShort:"£10Mrd AI datacenter Northumberland. Potentiellement le plus grand AI DC d'Europe. 4 000 emplois.",attributes:["Hyperscale Data Center","AI Infrastructure","Tier 3 Data Center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"",contacts:[{role:"Project Owner",company:"Blackstone Inc.",person:"",title:"",email:"",tel:"",linkedin:"blackstone.com"}],metrics:[{p:"Investment",v:"10 000",u:"GBP M"},{p:"Jobs Created",v:"4 000",u:""}],tenders:[{name:"EPC Tender",type:"EPC",issue:"2025 Q4",submission:"2026 Q1",award:"2026 Q2",awardedTo:"",shortlisted:""}],updates:["2024 Q1 – Projet annoncé.","2024 Q3 – Site confirmé."]},
+
+  {id:"DC010",name:"DC01UK Hertfordshire – Phase 1",type:"Sub",value:1200,region:"Europe",country:"United Kingdom",city:"Hertfordshire",announced:"2023 Q4",start:"2025 Q1",end:"2027 Q2",phase:"construction",overview:"Phase 1 du campus DC01UK en Hertfordshire. Première tranche de capacité hyperscale livrée pour 2027.",summaryShort:"Phase 1 DC01UK. Première tranche hyperscale, livraison prévue 2027.",attributes:["Hyperscale Data Center","AI Infrastructure"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://dc01uk.com",contacts:[{role:"Project Owner",company:"DC01UK Ltd",person:"",title:"",email:"",tel:"",linkedin:""},{role:"Engineering Design Consultant",company:"Mott MacDonald",person:"James Wright",title:"Lead Engineer",email:"j.wright@mottmac.com",tel:"+44 20 8774 2000",linkedin:"linkedin.com/in/james-wright-eng"},{role:"Main Contractor",company:"Mace Group",person:"Sarah Chen",title:"Project Director",email:"s.chen@macegroup.com",tel:"+44 20 3522 3000",linkedin:"linkedin.com/in/sarah-chen-mace"}],metrics:[],tenders:[{name:"Structural & Civil Works",type:"Design Build",issue:"2025 Q1",submission:"2025 Q2",award:"2025 Q3",awardedTo:"Mace Group",shortlisted:"Mace Group, BAM Construct"}],updates:["2025 Q1 – Construction démarrée.","2024 Q4 – Attribution EPC à Mace Group."]},
+
+  {id:"DC011",name:"Pure DC Westpoort – Amsterdam Hyperscale",type:"Parent",value:1100,region:"Europe",country:"Netherlands",city:"Amsterdam",announced:"2024 Q3",start:"2025 Q1",end:"2026 Q4",phase:"construction",overview:"Plus grand bail hyperscale standalone d'Europe signé en 2025. Campus 78 MW, Westpoort Amsterdam. Investissement >€1 milliard.",summaryShort:"Plus grand bail hyperscale standalone signé en Europe en 2025. 78 MW Westpoort Amsterdam.",attributes:["Hyperscale Data Center","Colocation Data Center"],momentum:5,funding:"Confirmed",sector:"Data Center",source:"",contacts:[{role:"Project Owner",company:"Pure DC",person:"",title:"",email:"",tel:"",linkedin:""}],metrics:[{p:"IT Capacity",v:"78",u:"MW"}],tenders:[],updates:["2025 – Plus grand bail hyperscale standalone Europe.","2024 Q3 – Annoncé."]},
+
+  {id:"DC012",name:"AtlasEdge Lisbon Campus – Portugal",type:"Parent",value:322,region:"Europe",country:"Portugal",city:"Lisbonne",announced:"2025 Q4",start:"2026 Q2",end:"2028 Q4",phase:"announced",overview:"AtlasEdge utilise 292M$ de financement à impact durable pour deux datacenters à Lisbonne. Profite du réseau électrique vert portugais.",summaryShort:"2 DC Lisbonne, $292M financement green. Réseau électrique 100% renouvelable portugais.",attributes:["Colocation Data Center","Green data center","Sustainability-Linked Finance"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://atlasedge.eu",contacts:[{role:"Project Owner",company:"AtlasEdge Data Centres",person:"",title:"",email:"",tel:"",linkedin:"atlasedge.eu"}],metrics:[{p:"Green Finance",v:"292",u:"USD M"}],tenders:[],updates:["Décembre 2025 – Financement green sécurisé."]},
+
+  {id:"DC013",name:"HyperCo / DAMAC – Kouvola Finland",type:"Parent",value:1110,region:"Europe",country:"Finland",city:"Kouvola",announced:"2024 Q1",start:"2025 Q3",end:"2028 Q4",phase:"construction",overview:"HyperCo Oy (DAMAC Digital) développe un DC €1Mrd à Kouvola, Finlande. Fait partie du Project Clover de TikTok (€12Mrd) pour protéger les données de 175 millions d'utilisateurs européens.",summaryShort:"€1Mrd DC Finlande. Part de TikTok Project Clover €12Mrd. Données 175M utilisateurs EU.",attributes:["Hyperscale Data Center","Green data center","Renewable Energy"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"",contacts:[{role:"Project Owner",company:"HyperCo Oy",person:"",title:"",email:"",tel:"",linkedin:""},{role:"Developer",company:"DAMAC Digital",person:"",title:"",email:"",tel:"",linkedin:"damacdigital.com"}],metrics:[{p:"Investment",v:"1 000",u:"EUR M"}],tenders:[],updates:["2024 Q1 – Annoncé dans le cadre du TikTok Project Clover."]},
+
+  {id:"DC014",name:"Digital Realty FRA20 – Frankfurt",type:"Sub",value:150,region:"Europe",country:"Germany",city:"Frankfurt",announced:"2025 Q4",start:"2026 Q2",end:"2027 Q4",phase:"announced",overview:"Digital Realty construit FRA20 à Francfort. 16 MW de capacité IT sur 8 100 m², livraison en deux phases.",summaryShort:"FRA20, 16 MW Frankfurt, 8 100 m². Livraison deux phases 2027.",attributes:["Colocation Data Center","Hyperscale Data Center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://digitalrealty.com",contacts:[{role:"Project Owner",company:"Digital Realty Trust",person:"Klaus Hoffmann",title:"VP Development EMEA",email:"k.hoffmann@digitalrealty.com",tel:"+49 69 2400 6000",linkedin:"linkedin.com/in/klaus-hoffmann-dlr"}],metrics:[{p:"IT Capacity",v:"16",u:"MW"},{p:"Floor Area",v:"8 100",u:"m²"}],tenders:[{name:"MEP & Structure",type:"Design Build",issue:"2026 Q1",submission:"2026 Q2",award:"2026 Q2",awardedTo:"",shortlisted:""}],updates:["Janvier 2026 – FRA20 annoncé."]},
+
+  {id:"DC015",name:"Microsoft Spain – 3 Datacenters AI",type:"Parent",value:3560,region:"Europe",country:"Spain",city:"Madrid",announced:"2024 Q1",start:"2025 Q1",end:"2028 Q4",phase:"construction",overview:"Microsoft investit $3.2Mrd en Espagne pour étendre sa capacité datacenter avec 20 000 GPU supplémentaires répartis sur trois installations. Renforce la position de l'Espagne comme hub cloud du Sud de l'Europe.",summaryShort:"$3.2Mrd, 3 DC Espagne, 20 000 GPU Azure AI. Hub cloud stratégique Sud Europe.",attributes:["Hyperscale Data Center","AI Infrastructure","Cloud Infrastructure"],momentum:4,funding:"Confirmed",sector:"Data Center",source:"https://microsoft.com",contacts:[{role:"Project Owner",company:"Microsoft Corporation",person:"",title:"",email:"",tel:"",linkedin:"microsoft.com"},{role:"Engineering Design Consultant",company:"TYPSA",person:"Carlos Ruiz",title:"Project Manager",email:"c.ruiz@typsa.es",tel:"+34 91 452 71 00",linkedin:"linkedin.com/in/carlos-ruiz-typsa"}],metrics:[{p:"Investment",v:"3 200",u:"USD M"},{p:"GPU Units",v:"20 000",u:"unités"}],tenders:[{name:"Civil & MEP Phase 1",type:"EPC",issue:"2024 Q3",submission:"2024 Q4",award:"2025 Q1",awardedTo:"ACS Group",shortlisted:"ACS Group, FCC"},{name:"Civil & MEP Phase 2",type:"EPC",issue:"2025 Q3",submission:"2025 Q4",award:"2026 Q1",awardedTo:"",shortlisted:""}],updates:["2025 Q1 – Construction démarrée sur les 3 sites.","2024 Q1 – Investissement annoncé."]},
+
+  {id:"DC016",name:"Nscale Loughton Essex – AI Infrastructure",type:"Parent",value:3150,region:"Europe",country:"United Kingdom",city:"Loughton",announced:"2024 Q3",start:"2026 Q1",end:"2030 Q4",phase:"announced",overview:"Nscale investit £2.5Mrd dans un DC AI à Loughton, Essex. Accord colocation 40 MW avec WhiteFiber NC-1 ($865M sur 10 ans). Expansion en cours en Europe et Amérique du Nord.",summaryShort:"£2.5Mrd DC AI Essex. Accord 40 MW WhiteFiber $865M. Expansion EU + Amérique du Nord.",attributes:["Hyperscale Data Center","AI Infrastructure","Colocation Data Center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://nscale.com",contacts:[{role:"Project Owner",company:"Nscale",person:"",title:"",email:"",tel:"",linkedin:"nscale.com"}],metrics:[{p:"Investment",v:"2 500",u:"GBP M"}],tenders:[],updates:["Janvier 2026 – Accord WhiteFiber 40 MW annoncé.","2024 Q3 – Campus Loughton annoncé."]},
+
+  {id:"DC017",name:"Apto Lacchiarella – Campus Milan",type:"Parent",value:3400,region:"Europe",country:"Italy",city:"Milan",announced:"2025 Q1",start:"2026 Q3",end:"2031 Q4",phase:"announced",overview:"Apto développe le campus Lacchiarella près de Milan, €3Mrd, 228 000 m². Jusqu'à 5 bâtiments datacenter distincts pour charges AI et cloud.",summaryShort:"€3Mrd, 228 000 m², jusqu'à 5 DC près Milan. Un des plus grands projets AI d'Italie.",attributes:["Hyperscale Data Center","AI Infrastructure","Colocation Data Center"],momentum:2,funding:"Not Funded / Unconfirmed",sector:"Data Center",source:"",contacts:[{role:"Project Owner",company:"Apto",person:"",title:"",email:"",tel:"",linkedin:""}],metrics:[{p:"Site Area",v:"228 000",u:"m²"},{p:"Investment",v:"3 000",u:"EUR M"}],tenders:[],updates:["2025 Q1 – Projet annoncé."]},
+
+  {id:"DC018",name:"Groupe TIM – Datacenter Rome",type:"Parent",value:150,region:"Europe",country:"Italy",city:"Rome",announced:"2024 Q3",start:"2025 Q2",end:"2027 Q2",phase:"construction",overview:"Gruppo TIM investit ~$136M pour un nouveau datacenter près de Rome. Infrastructure pour les clients cloud et entreprises de Telecom Italia.",summaryShort:"$136M DC Rome. Telecom Italia pour clients cloud et entreprises.",attributes:["Colocation Data Center","Tier 3 Data Center"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://gruppotim.it",contacts:[{role:"Project Owner",company:"Gruppo TIM",person:"",title:"",email:"",tel:"",linkedin:"gruppotim.it"}],metrics:[{p:"Investment",v:"136",u:"USD M"}],tenders:[],updates:["2024 Q3 – Annoncé."]},
+
+  {id:"DC019",name:"Kao Data – Stockport Greater Manchester",type:"Parent",value:440,region:"Europe",country:"United Kingdom",city:"Stockport",announced:"2024 Q2",start:"2025 Q2",end:"2027 Q4",phase:"construction",overview:"Kao Data construit un DC £350M à Stockport pour renforcer l'infrastructure numérique régionale. Supporte cloud, AI et HPC workloads.",summaryShort:"£350M DC Stockport Manchester. Cloud, AI, HPC. Partie stratégie UK hors Londres.",attributes:["Colocation Data Center","Hyperscale Data Center","AI Infrastructure"],momentum:3,funding:"Confirmed",sector:"Data Center",source:"https://kaodata.com",contacts:[{role:"Project Owner",company:"Kao Data",person:"",title:"",email:"",tel:"",linkedin:"kaodata.com"},{role:"Project Management Consultant",company:"Turner & Townsend",person:"Mark Johnson",title:"Programme Director",email:"mark.johnson@turnerandtownsend.com",tel:"+44 161 831 6000",linkedin:"linkedin.com/in/mark-johnson-tnt"}],metrics:[{p:"Investment",v:"350",u:"GBP M"}],tenders:[{name:"Main Works EPC",type:"EPC",issue:"2024 Q4",submission:"2025 Q1",award:"2025 Q1",awardedTo:"ISG plc",shortlisted:"ISG plc, Lendlease"}],updates:["2025 Q2 – Construction démarrée.","2025 Q1 – EPC attribué à ISG plc.","2024 Q2 – Annoncé."]},
+
+  {id:"DC020",name:"Echelon DUB20 – Arklow Wicklow",type:"Parent",value:700,region:"Europe",country:"Ireland",city:"Arklow",announced:"2023 Q3",start:"2025 Q3",end:"2028 Q4",phase:"admin",overview:"Echelon Data Centres développe DUB20, campus 67 acres à Arklow, County Wicklow, jusqu'à 100 MW de charge IT. Part du plan Ireland 2030 pour 40 nouveaux datacenters.",summaryShort:"100 MW, 67 acres Arklow Irlande. Part du programme 40 DC Ireland 2030.",attributes:["Hyperscale Data Center","Colocation Data Center","Green data center"],momentum:3,funding:"Not Funded / Unconfirmed",sector:"Data Center",source:"https://echelondatacentres.com",contacts:[{role:"Project Owner",company:"Echelon Data Centres",person:"",title:"",email:"",tel:"",linkedin:"echelondatacentres.com"}],metrics:[{p:"Site Area",v:"67",u:"acres"},{p:"IT Capacity",v:"100",u:"MW"}],tenders:[],updates:["2025 Q3 – Démarrage construction prévu.","2023 Q3 – Annoncé."]}
+];
+
+let PROJECTS = [];
+let filtered = [];
+let activeView = 'cards';
+let currentPage = 1;
+const PER_PAGE = 12;
+let searchTimer = null;
+let activePhases = [];
+let activeRoles = [];
+let activeAttrs = [];
+
+function init() {
+  buildStaticFilters();
+  applyFilters();
+}
+
+function buildStaticFilters() {
+  const regions = [...new Set(PROJECTS.map(p=>p.region))].sort();
+  document.getElementById('filter-region').innerHTML = regions.map(r=>`<div class="ci"><input type="checkbox" id="reg-${r.replace(/\s/g,'_')}" value="${r}" onchange="applyFilters()"><label for="reg-${r.replace(/\s/g,'_')}">${r}</label></div>`).join('');
+
+  const countries = [...new Set(PROJECTS.map(p=>p.country))].sort();
+  document.getElementById('filter-country').innerHTML = countries.map(c=>`<div class="ci"><input type="checkbox" id="cty-${c.replace(/\s/g,'_')}" value="${c}" onchange="applyFilters()"><label for="cty-${c.replace(/\s/g,'_')}">${(FLAGS[c]||'')} ${c}</label></div>`).join('');
+
+  document.getElementById('filter-momentum').innerHTML = [0,1,2,3,4,5].map(m=>`<div class="ci"><input type="checkbox" id="mom-${m}" value="${m}" onchange="applyFilters()"><label for="mom-${m}">${'█'.repeat(m)||'○'} Score ${m}</label></div>`).join('');
+
+  const allAttrs = [...new Set(PROJECTS.flatMap(p=>p.attributes))].sort();
+  document.getElementById('filter-attrs').innerHTML = allAttrs.map(a=>`<div class="tp" onclick="toggleAttr(this,'${a.replace(/'/g,'')}')">${a}</div>`).join('');
+
+  const fundings = [...new Set(PROJECTS.map(p=>p.funding))];
+  document.getElementById('filter-funding').innerHTML = fundings.map(f=>`<div class="ci"><input type="checkbox" id="fund-${f.replace(/\s\/\s/g,'_')}" value="${f}" onchange="applyFilters()"><label for="fund-${f.replace(/\s\/\s/g,'_')}">${f}</label></div>`).join('');
+}
+
+function applyFilters() {
+  const regions = [...document.querySelectorAll('#filter-region input:checked')].map(i=>i.value);
+  const countries = [...document.querySelectorAll('#filter-country input:checked')].map(i=>i.value);
+  const types = [...document.querySelectorAll('#tp-parent:checked,#tp-sub:checked')].map(i=>i.value);
+  const momenta = [...document.querySelectorAll('#filter-momentum input:checked')].map(i=>parseInt(i.value));
+  const fundings = [...document.querySelectorAll('#filter-funding input:checked')].map(i=>i.value);
+  const minV = parseInt(document.getElementById('rMin').value);
+  const maxV = parseInt(document.getElementById('rMax').value);
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const sort = document.getElementById('sortSel').value;
+
+  filtered = PROJECTS.filter(p => {
+    if (regions.length && !regions.includes(p.region)) return false;
+    if (countries.length && !countries.includes(p.country)) return false;
+    if (types.length && !types.includes(p.type)) return false;
+    if (momenta.length && !momenta.includes(p.momentum)) return false;
+    if (fundings.length && !fundings.includes(p.funding)) return false;
+    if (activePhases.length && !activePhases.includes(p.phase)) return false;
+    if (activeAttrs.length && !activeAttrs.every(a=>p.attributes.includes(a))) return false;
+    if (p.value < minV || p.value > maxV) return false;
+    if (activeRoles.length) {
+      const projRoles = p.contacts.map(c=>roleKey(c.role)).filter(Boolean);
+      if (!activeRoles.every(r=>projRoles.includes(r))) return false;
+    }
+    if (q) {
+      const hay = [p.name,p.country,p.city,p.overview,p.attributes.join(' '),p.contacts.map(c=>c.company+' '+(c.person||'')).join(' ')].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a,b) => {
+    if (sort==='value-desc') return b.value-a.value;
+    if (sort==='value-asc') return a.value-b.value;
+    if (sort==='momentum') return b.momentum-a.momentum;
+    if (sort==='name') return a.name.localeCompare(b.name);
+    if (sort==='start') return (a.start||'').localeCompare(b.start||'');
+    return b.momentum-a.momentum;
+  });
+
+  currentPage = 1;
+  document.getElementById('countBadge').textContent = `${filtered.length} projet${filtered.length!==1?'s':''}`;
+  renderCurrentView();
+}
+
+function togglePhase(el, phase) {
+  el.classList.toggle('active');
+  if (activePhases.includes(phase)) activePhases = activePhases.filter(p=>p!==phase);
+  else activePhases.push(phase);
+  applyFilters();
+}
+
+function toggleRole(el, role) {
+  const wasActive = el.classList.contains(`active-${role}`);
+  el.className = 'rf-item';
+  if (!wasActive) { el.classList.add(`active-${role}`); if (!activeRoles.includes(role)) activeRoles.push(role); }
+  else activeRoles = activeRoles.filter(r=>r!==role);
+  applyFilters();
+}
+
+function toggleAttr(el, attr) {
+  el.classList.toggle('active');
+  if (activeAttrs.includes(attr)) activeAttrs = activeAttrs.filter(a=>a!==attr);
+  else activeAttrs.push(attr);
+  applyFilters();
+}
+
+function upRange() {
+  document.getElementById('rvMin').textContent = parseInt(document.getElementById('rMin').value).toLocaleString('fr-FR');
+  document.getElementById('rvMax').textContent = parseInt(document.getElementById('rMax').value).toLocaleString('fr-FR');
+  applyFilters();
+}
+
+function tf(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+document.getElementById('searchInput').addEventListener('input', ()=>{ clearTimeout(searchTimer); searchTimer=setTimeout(applyFilters,300); });
+
+function clearAll() {
+  document.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=false);
+  document.querySelectorAll('.tp.active').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.phase-btn.active').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.rf-item').forEach(r=>r.className='rf-item');
+  document.getElementById('searchInput').value='';
+  document.getElementById('rMin').value=0;
+  document.getElementById('rMax').value=22000;
+  document.getElementById('rvMin').textContent='0';
+  document.getElementById('rvMax').textContent='22 000';
+  activePhases=[]; activeRoles=[]; activeAttrs=[];
+  applyFilters();
+}
+
+// VIEW MANAGEMENT
+function setView(v) {
+  activeView = v;
+  ['cards','pipeline','table'].forEach(x => {
+    document.getElementById('viewCards').style.display = x==='cards'&&v==='cards'?'block':'none';
+    document.getElementById('viewPipeline').style.display = x==='pipeline'&&v==='pipeline'?'block':'none';
+    document.getElementById('viewTable').style.display = x==='table'&&v==='table'?'block':'none';
+    document.getElementById(`tab-${x}`).classList.toggle('active', x===v);
+  });
+  document.getElementById('viewCards').style.display = v==='cards'?'block':'none';
+  document.getElementById('viewPipeline').style.display = v==='pipeline'?'block':'none';
+  document.getElementById('viewTable').style.display = v==='table'?'block':'none';
+  renderCurrentView();
+}
+
+function renderCurrentView() {
+  if (activeView==='cards') { renderCards(); renderPagination(); }
+  else if (activeView==='pipeline') renderPipeline();
+  else renderTable();
+}
+
+// HELPERS
+function fmtVal(v) { return v>=1000?`$${(v/1000).toFixed(1).replace('.0','')}Mrd`:`$${v}M`; }
+function flag(c) { return FLAGS[c]||''; }
+function phaseLabel(p) { const m={'announced':'Annoncé','admin':'Admin / Permis','construction':'Construction','completed':'Terminé'}; return m[p]||p; }
+function phaseBadge(p) { return `<span class="b b-phase-${p}">${phaseLabel(p)}</span>`; }
+function fundBadge(f) { return f==='Confirmed'?`<span class="b b-fund-conf">Financé ✓</span>`:`<span class="b b-fund-unc">Non confirmé</span>`; }
+function roleBadge(role) {
+  const k = roleKey(role);
+  if (!k) return '';
+  const labels={'owner':'Owner','epc':'EPC','design':'Design','pm':'PM'};
+  return `<span class="role-pill rp-${k}">${labels[k]}</span>`;
+}
+function momentumBar(m, max=5) {
+  return Array.from({length:max},(_,i)=>{
+    let cls='md';
+    if (i<m) { if(m<=0) cls+=' m0'; else if(m<=2) cls+=' m12'; else if(m<=4) cls+=' m34'; else cls+=' m5'; }
+    return `<div class="${cls}"></div>`;
+  }).join('');
+}
+function getMW(p) {
+  const m = p.metrics.find(m=>m.u==='MW');
+  return m?m.v+' MW':null;
+}
+function getContacts(p) {
+  const roles = [...new Set(p.contacts.map(c=>roleKey(c.role)).filter(Boolean))];
+  return roles.map(r=>`<div class="pc-dot" style="background:var(--${r})"></div>`).join('');
+}
+
+// CARDS
+function renderCards() {
+  const grid = document.getElementById('cardsGrid');
+  const start = (currentPage-1)*PER_PAGE;
+  const page = filtered.slice(start, start+PER_PAGE);
+  if (!filtered.length) { grid.innerHTML=`<div class="empty">Aucun projet ne correspond aux filtres sélectionnés</div>`; return; }
+  grid.innerHTML = page.map(p => {
+    const roles = [...new Set(p.contacts.map(c=>roleKey(c.role)).filter(Boolean))];
+    const mw = getMW(p);
+    return `<div class="card" onclick="openPanel('${p.id}')">
+      <div class="card-phase-bar phase-bar-${p.phase}"></div>
+      <div class="card-top">
+        <div class="badge-row">${phaseBadge(p.phase)}<span class="b b-type">${p.type}</span></div>
+        <span style="font-family:var(--mono);font-size:12px;font-weight:500;color:var(--blue)">${fmtVal(p.value)}</span>
+      </div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-loc">${flag(p.country)} ${p.country}${p.city&&p.city!=='Plusieurs sites'?' · '+p.city:''}</div>
+      <div class="card-metrics">
+        ${mw?`<div class="metric-chip"><div class="mc-label">Capa.</div><div class="mc-val">${mw}</div></div>`:''}
+        <div class="metric-chip"><div class="mc-label">Démarrage</div><div class="mc-val">${p.start||'—'}</div></div>
+        <div class="metric-chip"><div class="mc-label">Fin</div><div class="mc-val">${p.end||'—'}</div></div>
+      </div>
+      <div class="card-contacts-preview">${roles.map(r=>{const lbl={owner:'Owner',epc:'EPC',design:'Design',pm:'PM'}; return `<span class="role-pill rp-${r}">${lbl[r]}</span>`;}).join('')}</div>
+      <div class="card-footer">
+        <div class="momentum">${momentumBar(p.momentum)}</div>
+        ${fundBadge(p.funding)}
+        <span class="card-link-txt">Voir →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderPagination() {
+  const total = Math.ceil(filtered.length/PER_PAGE);
+  const pag = document.getElementById('pagination');
+  if (total<=1) { pag.innerHTML=''; return; }
+  let html = `<button class="pb" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Préc</button>`;
+  for (let i=1;i<=total;i++) {
+    if (i===1||i===total||Math.abs(i-currentPage)<=1) html+=`<button class="pb ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    else if (Math.abs(i-currentPage)===2) html+=`<span style="color:var(--text3);padding:0 4px">…</span>`;
+  }
+  html+=`<button class="pb" onclick="goPage(${currentPage+1})" ${currentPage===total?'disabled':''}>Suiv →</button>`;
+  pag.innerHTML = html;
+}
+
+function goPage(n) {
+  const total=Math.ceil(filtered.length/PER_PAGE);
+  if (n<1||n>total) return;
+  currentPage=n; renderCards(); renderPagination();
+  document.getElementById('mainArea').scrollTop=0;
+}
+
+// PIPELINE
+function renderPipeline() {
+  const phases = ['announced','admin','construction','completed'];
+  const labels = {announced:'Annoncé / Étude',admin:'Admin / Permis',construction:'Construction',completed:'Terminé'};
+  const cols = document.getElementById('pipelineCols');
+  cols.innerHTML = phases.map(ph => {
+    const projs = filtered.filter(p=>p.phase===ph);
+    const totalVal = projs.reduce((s,p)=>s+p.value,0);
+    return `<div class="pipeline-col">
+      <div class="pipeline-col-header pch-${ph}">
+        <div class="pch-title">${labels[ph]}</div>
+        <div class="pch-count">${projs.length} projet${projs.length!==1?'s':''} · ${fmtVal(totalVal)}</div>
+      </div>
+      ${projs.map(p=>`<div class="pipeline-card" onclick="openPanel('${p.id}')">
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-loc">${flag(p.country)} ${p.country}${p.city&&p.city!=='Plusieurs sites'?' · '+p.city:''}</div>
+        <div class="pc-bottom">
+          <span class="pc-val">${fmtVal(p.value)}</span>
+          <div class="pc-contacts">${getContacts(p)}</div>
+        </div>
+      </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+// TABLE
+function renderTable() {
+  const body = document.getElementById('tableBody');
+  if (!filtered.length) { body.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--text3);padding:24px">Aucun projet</td></tr>`; return; }
+  body.innerHTML = filtered.map(p => {
+    const mw = getMW(p);
+    const roles = [...new Set(p.contacts.map(c=>roleKey(c.role)).filter(Boolean))];
+    return `<tr onclick="openPanel('${p.id}')">
+      <td class="td-name">${p.name}<small>${flag(p.country)} ${p.country}</small></td>
+      <td>${p.city}</td>
+      <td>${phaseBadge(p.phase)}</td>
+      <td style="font-family:var(--mono);font-weight:500;color:var(--blue)">${fmtVal(p.value)}</td>
+      <td style="font-family:var(--mono)">${mw||'—'}</td>
+      <td style="font-family:var(--mono);font-size:11px">${p.start||'—'}</td>
+      <td><div class="momentum">${momentumBar(p.momentum)}</div></td>
+      <td><div style="display:flex;gap:3px">${roles.map(r=>`<div style="width:8px;height:8px;border-radius:50%;background:var(--${r})"></div>`).join('')}</div></td>
+      <td>${fundBadge(p.funding)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// DETAIL PANEL
+let currentContactTab = 'all';
+function openPanel(id) {
+  const p = PROJECTS.find(x=>x.id===id);
+  if (!p) return;
+  currentContactTab = 'all';
+
+  document.getElementById('panelTitle').textContent = p.name;
+  document.getElementById('panelMeta').innerHTML = [
+    phaseBadge(p.phase),
+    `<span class="b b-type">${p.type}</span>`,
+    `<span class="b" style="background:var(--surface3);color:var(--text2);border:1px solid var(--border)">${flag(p.country)} ${p.country}${p.city&&p.city!=='Plusieurs sites'?' · '+p.city:''}</span>`,
+    `<span class="b" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);font-family:var(--mono)">${fmtVal(p.value)}</span>`,
+    fundBadge(p.funding)
+  ].join('');
+
+  document.getElementById('panelActions').innerHTML = `
+    <button class="btn btn-export-crm" onclick="exportProjectContacts('${p.id}')">↓ Export contacts CRM</button>
+    ${p.source?`<a href="${p.source}" target="_blank" class="btn">↗ Source</a>`:''}
+  `;
+
+  // Build body
+  let html = '';
+
+  // Timeline
+  const pct = tlPct(p.start, p.end);
+  html += `<div>
+    <div class="sec-head">Timeline</div>
+    <div class="tl">
+      <div class="tl-node"><div class="tl-dot" style="background:var(--amber)"></div><div class="tl-label">Annoncé<br>${p.announced||'—'}</div></div>
+      <div class="tl-progress" style="flex:1"><div class="tl-progress-fill" style="width:${pct}%"></div></div>
+      <div class="tl-node"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-label">Construction<br>${p.start||'—'}</div></div>
+      <div class="tl-progress" style="flex:1"><div class="tl-progress-fill" style="width:${Math.max(0,pct-30)}%"></div></div>
+      <div class="tl-node"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-label">Livraison<br>${p.end||'—'}</div></div>
+    </div>
+  </div>`;
+
+  // Metrics
+  if (p.metrics.length) {
+    html += `<div>
+      <div class="sec-head">Métriques clés</div>
+      <div class="metrics-row">
+        ${p.metrics.map(m=>`<div class="mk"><div class="mk-label">${m.p}</div><div class="mk-val">${m.v}</div><div class="mk-unit">${m.u}</div></div>`).join('')}
+        <div class="mk"><div class="mk-label">Momentum</div><div class="mk-val">${p.momentum}/5</div><div class="mk-unit"><div class="momentum" style="margin-top:4px">${momentumBar(p.momentum)}</div></div></div>
+      </div>
+    </div>`;
+  }
+
+  // Overview
+  const words = p.overview.split(' ');
+  const shortText = words.slice(0,30).join(' ')+(words.length>30?'…':'');
+  html += `<div>
+    <div class="sec-head">Résumé projet</div>
+    <div class="overview-summary">${p.summaryShort}</div>
+    <div class="overview-full" id="ovf-${p.id}">${p.overview}</div>
+    ${words.length>30?`<button class="read-more" onclick="toggleOverview('${p.id}',this)">Lire la description complète ▾</button>`:''}
+  </div>`;
+
+  // Contacts — grouped by role
+  const grouped = {};
+  p.contacts.forEach(c => {
+    const k = roleKey(c.role)||'other';
+    if (!grouped[k]) grouped[k]=[];
+    grouped[k].push(c);
+  });
+  const roleKeys = Object.keys(grouped);
+  const roleLabels = {owner:'Project Owner / Developer',epc:'EPC / Main Contractor',design:'Engineering Design Consultant',pm:'Project Management',other:'Autre'};
+
+  html += `<div>
+    <div class="sec-head">Contacts par rôle</div>
+    <div class="contact-tabs" id="ctabs-${p.id}">
+      <button class="ctab active-owner" onclick="showContactTab('${p.id}','all',this)" style="background:var(--surface2);border-color:var(--border);color:var(--text2)">Tous (${p.contacts.length})</button>
+      ${roleKeys.map(k=>`<button class="ctab" onclick="showContactTab('${p.id}','${k}',this)"><div class="ctab-dot" style="background:var(--${k==='other'?'text3':k})"></div>${roleLabels[k]||k} (${grouped[k].length})</button>`).join('')}
+    </div>
+    <div class="contact-cards" id="ccards-${p.id}">
+      ${p.contacts.map(c=>{
+        const k=roleKey(c.role)||'other';
+        return `<div class="cc-card" data-role="${k}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+            <div>
+              <div class="cc-company">${c.company}</div>
+              ${c.person?`<div class="cc-person">${c.person}</div>`:''}
+              ${c.title?`<div class="cc-title">${c.title} · <span style="font-size:10px;background:var(--${k==='other'?'surface3':k+'-bg'});color:var(--${k==='other'?'text2':k});padding:1px 6px;border-radius:4px;border:1px solid var(--${k==='other'?'border':k+'-border'})">${(c.role||'').split('/')[0].trim()}</span></div>`:''}
+            </div>
+          </div>
+          <div class="cc-links">
+            ${c.email?`<a class="cc-link" href="mailto:${c.email}">✉ ${c.email}</a>`:''}
+            ${c.tel?`<span class="cc-link cc-link-ph">📞 ${c.tel}</span>`:''}
+            ${c.linkedin?`<a class="cc-link cc-link-li" href="https://${c.linkedin}" target="_blank">in ${c.linkedin.replace('linkedin.com/in/','').replace('linkedin.com','LinkedIn')}</a>`:''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  // Tenders
+  if (p.tenders && p.tenders.length) {
+    html += `<div>
+      <div class="sec-head">Appels d'offres</div>
+      <div class="tenders-list">
+        ${p.tenders.map(t=>`<div class="tender-card">
+          <div class="tender-name">${t.name}</div>
+          <div class="tender-meta">
+            <span class="tender-pill">${t.type}</span>
+            ${t.issue?`<span class="tender-pill">Émis ${t.issue}</span>`:''}
+            ${t.award?`<span class="tender-pill">Attribution ${t.award}</span>`:''}
+            ${t.awardedTo?`<span class="tender-awarded">Attribué : ${t.awardedTo}</span>`:`<span class="tender-open">Ouvert</span>`}
+            ${t.shortlisted&&!t.awardedTo?`<span class="tender-pill">Shortlist : ${t.shortlisted}</span>`:''}
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // Updates
+  html += `<div>
+    <div class="sec-head">Dernières mises à jour</div>
+    <div class="updates">${p.updates.map(u=>`<div class="upd"><div class="upd-dot"></div><div class="upd-text">${u}</div></div>`).join('')}</div>
+  </div>`;
+
+  // Attributes
+  html += `<div>
+    <div class="sec-head">Attributs</div>
+    <div class="tag-cloud">${p.attributes.map(a=>`<div class="tp active" style="cursor:default">${a}</div>`).join('')}</div>
+  </div>`;
+
+  document.getElementById('panelBody').innerHTML = html;
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('panel').classList.add('open');
+}
+
+function toggleOverview(id, btn) {
+  const el = document.getElementById(`ovf-${id}`);
+  const open = el.classList.toggle('open');
+  btn.textContent = open ? 'Réduire ▴' : 'Lire la description complète ▾';
+}
+
+function showContactTab(pid, role, btn) {
+  document.querySelectorAll(`#ctabs-${pid} .ctab`).forEach(b => { b.className='ctab'; b.style=''; });
+  if (role==='all') { btn.style='background:var(--surface3);border-color:var(--border2);color:var(--text);font-weight:500'; }
+  else { btn.classList.add(`active-${role}`); }
+  document.querySelectorAll(`#ccards-${pid} .cc-card`).forEach(c => {
+    c.style.display = (role==='all'||c.dataset.role===role)?'block':'none';
+  });
+}
+
+function closePanel() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('panel').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closePanel(); });
+
+function tlPct(start, end) {
+  if (!start||!end) return 0;
+  const parse = q => { const [y,qt]=q.split(' '); return new Date(parseInt(y),(parseInt(qt.replace('Q',''))-1)*3,1); };
+  try {
+    const s=parse(start),e=parse(end),now=new Date();
+    return Math.max(0,Math.min(100,Math.round(((now-s)/(e-s))*100)));
+  } catch { return 0; }
+}
+
+// EXPORTS
+function exportContactsCRM() {
+  const rows = [['Project_ID','Project_Name','Country','City','Phase','Budget_USDM','Role','Company','Person','Title','Email','Phone','LinkedIn']];
+  filtered.forEach(p => {
+    p.contacts.forEach(c => {
+      rows.push([p.id,`"${p.name}"`,p.country,p.city,p.phase,p.value,`"${c.role}"`,`"${c.company}"`,`"${c.person||''}"`,`"${c.title||''}"`,c.email||'',c.tel||'',c.linkedin||'']);
+    });
+  });
+  dl(rows, `DC_contacts_CRM_${new Date().toISOString().slice(0,10)}.csv`);
+}
+
+function exportProjectContacts(id) {
+  const p = PROJECTS.find(x=>x.id===id);
+  if (!p) return;
+  const rows = [['Project_ID','Project_Name','Country','Phase','Budget_USDM','Role','Company','Person','Title','Email','Phone','LinkedIn']];
+  p.contacts.forEach(c => rows.push([p.id,`"${p.name}"`,p.country,p.phase,p.value,`"${c.role}"`,`"${c.company}"`,`"${c.person||''}"`,`"${c.title||''}"`,c.email||'',c.tel||'',c.linkedin||'']));
+  dl(rows, `contacts_${p.id}.csv`);
+}
+
+function dl(rows, fname) {
+  const blob = new Blob([rows.map(r=>r.join(',')).join('\n')],{type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; a.click();
+}
+
+async function loadData() {
+  const statusEl = document.getElementById('data-status');
+  try {
+    const [projRes, metaRes] = await Promise.all([
+      fetch('data/projects.json?' + Date.now()),
+      fetch('data/meta.json?' + Date.now())
+    ]);
+    if (projRes.ok) {
+      PROJECTS = await projRes.json();
+    }
+    if (metaRes.ok) {
+      const meta = await metaRes.json();
+      const d = meta.last_updated === 'never' ? 'jamais' : new Date(meta.last_updated).toLocaleString('fr-FR');
+      statusEl.textContent = `${PROJECTS.length} projets · Mis à jour : ${d} · +${meta.new_this_run} nouveaux`;
+      statusEl.style.color = 'var(--green)';
+    }
+  } catch(e) {
+    statusEl.textContent = 'Données locales (mode demo)';
+    statusEl.style.color = 'var(--text3)';
+  }
+  buildStaticFilters();
+  applyFilters();
+}
+loadData();
+</script>
+</body>
+</html>
