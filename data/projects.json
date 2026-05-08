@@ -1,5 +1,52 @@
 [
   {
+    "id": "DC010",
+    "name": "Pure DC Westpoort – Amsterdam Hyperscale",
+    "type": "Parent",
+    "value": 1100,
+    "region": "Europe",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "announced": "2024 Q3",
+    "start": "2025 Q1",
+    "end": "2026 Q4",
+    "phase": "construction",
+    "overview": "Plus grand bail hyperscale standalone d'Europe signé en 2025. Campus 78 MW, Westpoort Amsterdam. Investissement >€1 milliard.",
+    "summaryShort": "Plus grand bail hyperscale standalone EU 2025. 78 MW Amsterdam.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Colocation Data Center"
+    ],
+    "momentum": 5,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Pure DC",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": ""
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "78",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 – Plus grand bail hyperscale standalone EU."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC010"
+  },
+  {
     "id": "DC001",
     "name": "Brookfield AI Data Center Campus – Strängnäs",
     "type": "Parent",
@@ -113,66 +160,6 @@
     ],
     "scraped_at": "2026-05-08T09:10:05.558831+00:00",
     "source_hash": "DC002"
-  },
-  {
-    "id": "DC003",
-    "name": "Blackstone Data Center Campus – Aragon",
-    "type": "Parent",
-    "value": 8300,
-    "region": "Europe",
-    "country": "Spain",
-    "city": "Zaragoza",
-    "announced": "2023 Q3",
-    "start": "2026 Q1",
-    "end": "2030 Q4",
-    "phase": "admin",
-    "overview": "Blackstone is developing a €7.5 billion, 300 MW data center campus in the Aragon region of Spain. DIGA declaration obtained. 150 MW concession approved by Red Eléctrica.",
-    "summaryShort": "300 MW, €7.5Mrd Aragon. DIGA obtenu. Concession Red Eléctrica.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Green data center",
-      "Renewable Energy",
-      "Colocation Data Center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Blackstone Inc.",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "blackstone.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Consumption Capacity",
-        "v": "300",
-        "u": "MW"
-      }
-    ],
-    "tenders": [
-      {
-        "name": "EPC General Contractor",
-        "type": "EPC",
-        "issue": "2026 Q1",
-        "submission": "2026 Q2",
-        "award": "2026 Q3",
-        "awardedTo": "",
-        "shortlisted": ""
-      }
-    ],
-    "updates": [
-      "2024 Q4 – Concession 150 MW approuvée.",
-      "2023 Q3 – Annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC003"
   },
   {
     "id": "DC004",
@@ -372,63 +359,6 @@
     "source_hash": "DC006"
   },
   {
-    "id": "DC007",
-    "name": "Brookfield / Data4 – Programme France AI",
-    "type": "Parent",
-    "value": 22000,
-    "region": "Europe",
-    "country": "France",
-    "city": "Plusieurs sites",
-    "announced": "2025 Q1",
-    "start": "2026 Q1",
-    "end": "2030 Q4",
-    "phase": "announced",
-    "overview": "Brookfield s'engage à investir €20 milliards en France sur 5 ans. €15 milliards pilotés par Data4. Infrastructure AI incluant transfert de données, stockage GPU, production d'énergie.",
-    "summaryShort": "€20Mrd sur 5 ans en France via Data4. Plus grand programme AI EU.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Green data center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://data4.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Brookfield Asset Management",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "brookfield.com"
-      },
-      {
-        "role": "Developer",
-        "company": "Data4",
-        "person": "",
-        "title": "CEO",
-        "email": "",
-        "tel": "+33 1 85 09 25 25",
-        "linkedin": "data4.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Total Investment",
-        "v": "20000",
-        "u": "EUR M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Mars 2025 – €20Mrd France annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC007"
-  },
-  {
     "id": "DC008",
     "name": "Digital Realty AMS11 – Amsterdam",
     "type": "Parent",
@@ -479,107 +409,6 @@
     ],
     "scraped_at": "2026-05-08T09:10:05.558831+00:00",
     "source_hash": "DC008"
-  },
-  {
-    "id": "DC009",
-    "name": "Blackstone Northumberland – AI Facility Europe",
-    "type": "Parent",
-    "value": 12600,
-    "region": "Europe",
-    "country": "United Kingdom",
-    "city": "Northumberland",
-    "announced": "2024 Q1",
-    "start": "2026 Q1",
-    "end": "2031 Q4",
-    "phase": "admin",
-    "overview": "Blackstone développe un campus AI £10 milliards en Northumberland. Potentiellement le plus grand datacenter AI d'Europe. Plus de 4 000 emplois créés.",
-    "summaryShort": "£10Mrd AI Northumberland. Plus grand AI DC Europe. 4 000 emplois.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Tier 3 Data Center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Blackstone Inc.",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "blackstone.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Investment",
-        "v": "10000",
-        "u": "GBP M"
-      },
-      {
-        "p": "Jobs Created",
-        "v": "4000",
-        "u": ""
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2024 Q1 – Annoncé.",
-      "2024 Q3 – Site confirmé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC009"
-  },
-  {
-    "id": "DC010",
-    "name": "Pure DC Westpoort – Amsterdam Hyperscale",
-    "type": "Parent",
-    "value": 1100,
-    "region": "Europe",
-    "country": "Netherlands",
-    "city": "Amsterdam",
-    "announced": "2024 Q3",
-    "start": "2025 Q1",
-    "end": "2026 Q4",
-    "phase": "construction",
-    "overview": "Plus grand bail hyperscale standalone d'Europe signé en 2025. Campus 78 MW, Westpoort Amsterdam. Investissement >€1 milliard.",
-    "summaryShort": "Plus grand bail hyperscale standalone EU 2025. 78 MW Amsterdam.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Colocation Data Center"
-    ],
-    "momentum": 5,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Pure DC",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": ""
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "78",
-        "u": "MW"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2025 – Plus grand bail hyperscale standalone EU."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC010"
   },
   {
     "id": "DC011",
@@ -637,54 +466,6 @@
     ],
     "scraped_at": "2026-05-08T09:10:05.558831+00:00",
     "source_hash": "DC011"
-  },
-  {
-    "id": "DC012",
-    "name": "AtlasEdge Lisbon Campus – Portugal",
-    "type": "Parent",
-    "value": 322,
-    "region": "Europe",
-    "country": "Portugal",
-    "city": "Lisbonne",
-    "announced": "2025 Q4",
-    "start": "2026 Q2",
-    "end": "2028 Q4",
-    "phase": "announced",
-    "overview": "AtlasEdge utilise $292M de financement green pour deux datacenters à Lisbonne. Réseau électrique 100% renouvelable portugais.",
-    "summaryShort": "2 DC Lisbonne $292M green finance. Réseau 100% renouvelable.",
-    "attributes": [
-      "Colocation Data Center",
-      "Green data center",
-      "Sustainability-Linked Finance"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://atlasedge.eu",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "AtlasEdge Data Centres",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "atlasedge.eu"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Green Finance",
-        "v": "292",
-        "u": "USD M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Décembre 2025 – Financement green sécurisé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC012"
   },
   {
     "id": "DC013",
@@ -760,6 +541,225 @@
     "source_hash": "DC013"
   },
   {
+    "id": "DC003",
+    "name": "Blackstone Data Center Campus – Aragon",
+    "type": "Parent",
+    "value": 8300,
+    "region": "Europe",
+    "country": "Spain",
+    "city": "Zaragoza",
+    "announced": "2023 Q3",
+    "start": "2026 Q1",
+    "end": "2030 Q4",
+    "phase": "admin",
+    "overview": "Blackstone is developing a €7.5 billion, 300 MW data center campus in the Aragon region of Spain. DIGA declaration obtained. 150 MW concession approved by Red Eléctrica.",
+    "summaryShort": "300 MW, €7.5Mrd Aragon. DIGA obtenu. Concession Red Eléctrica.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Green data center",
+      "Renewable Energy",
+      "Colocation Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Inc.",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "blackstone.com"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Consumption Capacity",
+        "v": "300",
+        "u": "MW"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "EPC General Contractor",
+        "type": "EPC",
+        "issue": "2026 Q1",
+        "submission": "2026 Q2",
+        "award": "2026 Q3",
+        "awardedTo": "",
+        "shortlisted": ""
+      }
+    ],
+    "updates": [
+      "2024 Q4 – Concession 150 MW approuvée.",
+      "2023 Q3 – Annoncé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC003"
+  },
+  {
+    "id": "DC007",
+    "name": "Brookfield / Data4 – Programme France AI",
+    "type": "Parent",
+    "value": 22000,
+    "region": "Europe",
+    "country": "France",
+    "city": "Plusieurs sites",
+    "announced": "2025 Q1",
+    "start": "2026 Q1",
+    "end": "2030 Q4",
+    "phase": "announced",
+    "overview": "Brookfield s'engage à investir €20 milliards en France sur 5 ans. €15 milliards pilotés par Data4. Infrastructure AI incluant transfert de données, stockage GPU, production d'énergie.",
+    "summaryShort": "€20Mrd sur 5 ans en France via Data4. Plus grand programme AI EU.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Green data center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://data4.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Brookfield Asset Management",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "brookfield.com"
+      },
+      {
+        "role": "Developer",
+        "company": "Data4",
+        "person": "",
+        "title": "CEO",
+        "email": "",
+        "tel": "+33 1 85 09 25 25",
+        "linkedin": "data4.com"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Total Investment",
+        "v": "20000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "Mars 2025 – €20Mrd France annoncé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC007"
+  },
+  {
+    "id": "DC009",
+    "name": "Blackstone Northumberland – AI Facility Europe",
+    "type": "Parent",
+    "value": 12600,
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "Northumberland",
+    "announced": "2024 Q1",
+    "start": "2026 Q1",
+    "end": "2031 Q4",
+    "phase": "admin",
+    "overview": "Blackstone développe un campus AI £10 milliards en Northumberland. Potentiellement le plus grand datacenter AI d'Europe. Plus de 4 000 emplois créés.",
+    "summaryShort": "£10Mrd AI Northumberland. Plus grand AI DC Europe. 4 000 emplois.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Tier 3 Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Inc.",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "blackstone.com"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "10000",
+        "u": "GBP M"
+      },
+      {
+        "p": "Jobs Created",
+        "v": "4000",
+        "u": ""
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2024 Q1 – Annoncé.",
+      "2024 Q3 – Site confirmé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC009"
+  },
+  {
+    "id": "DC012",
+    "name": "AtlasEdge Lisbon Campus – Portugal",
+    "type": "Parent",
+    "value": 322,
+    "region": "Europe",
+    "country": "Portugal",
+    "city": "Lisbonne",
+    "announced": "2025 Q4",
+    "start": "2026 Q2",
+    "end": "2028 Q4",
+    "phase": "announced",
+    "overview": "AtlasEdge utilise $292M de financement green pour deux datacenters à Lisbonne. Réseau électrique 100% renouvelable portugais.",
+    "summaryShort": "2 DC Lisbonne $292M green finance. Réseau 100% renouvelable.",
+    "attributes": [
+      "Colocation Data Center",
+      "Green data center",
+      "Sustainability-Linked Finance"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://atlasedge.eu",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "AtlasEdge Data Centres",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "atlasedge.eu"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Green Finance",
+        "v": "292",
+        "u": "USD M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "Décembre 2025 – Financement green sécurisé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC012"
+  },
+  {
     "id": "DC014",
     "name": "Nscale Loughton Essex – AI Infrastructure",
     "type": "Parent",
@@ -807,106 +807,6 @@
     ],
     "scraped_at": "2026-05-08T09:10:05.558831+00:00",
     "source_hash": "DC014"
-  },
-  {
-    "id": "DC015",
-    "name": "Apto Lacchiarella – Campus Milan",
-    "type": "Parent",
-    "value": 3400,
-    "region": "Europe",
-    "country": "Italy",
-    "city": "Milan",
-    "announced": "2025 Q1",
-    "start": "2026 Q3",
-    "end": "2031 Q4",
-    "phase": "announced",
-    "overview": "Apto développe le campus Lacchiarella près de Milan, €3Mrd, 228 000 m². Jusqu'à 5 bâtiments datacenter pour AI et cloud.",
-    "summaryShort": "€3Mrd 228 000 m², 5 DC Milan. Un des plus grands en Italie.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Colocation Data Center"
-    ],
-    "momentum": 2,
-    "funding": "Not Funded / Unconfirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Apto",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": ""
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Site Area",
-        "v": "228000",
-        "u": "m²"
-      },
-      {
-        "p": "Investment",
-        "v": "3000",
-        "u": "EUR M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2025 Q1 – Annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC015"
-  },
-  {
-    "id": "DC016",
-    "name": "Pantheon AI – Croatia €50Bn Campus",
-    "type": "Parent",
-    "value": 54000,
-    "region": "Europe",
-    "country": "Croatia",
-    "city": "Zagreb",
-    "announced": "2025 Q1",
-    "start": "2027 Q1",
-    "end": "2032 Q4",
-    "phase": "announced",
-    "overview": "Pantheon AI planifie un campus datacenter AI de €50 milliards en Croatie. Le plus grand investissement datacenter jamais annoncé en Europe. Le campus Atlas ciblera les workloads AI hyperscale.",
-    "summaryShort": "€50Mrd campus AI Croatie. Plus grand investissement DC EU.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure"
-    ],
-    "momentum": 2,
-    "funding": "Not Funded / Unconfirmed",
-    "sector": "Data Center",
-    "source": "https://pantheon.ai",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Pantheon AI",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": ""
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Investment",
-        "v": "50000",
-        "u": "EUR M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2025 Q1 – Campus Atlas annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC016"
   },
   {
     "id": "DC017",
@@ -1122,5 +1022,105 @@
     ],
     "scraped_at": "2026-05-08T09:10:05.558831+00:00",
     "source_hash": "DC020"
+  },
+  {
+    "id": "DC015",
+    "name": "Apto Lacchiarella – Campus Milan",
+    "type": "Parent",
+    "value": 3400,
+    "region": "Europe",
+    "country": "Italy",
+    "city": "Milan",
+    "announced": "2025 Q1",
+    "start": "2026 Q3",
+    "end": "2031 Q4",
+    "phase": "announced",
+    "overview": "Apto développe le campus Lacchiarella près de Milan, €3Mrd, 228 000 m². Jusqu'à 5 bâtiments datacenter pour AI et cloud.",
+    "summaryShort": "€3Mrd 228 000 m², 5 DC Milan. Un des plus grands en Italie.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Colocation Data Center"
+    ],
+    "momentum": 2,
+    "funding": "Not Funded / Unconfirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Apto",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": ""
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Site Area",
+        "v": "228000",
+        "u": "m²"
+      },
+      {
+        "p": "Investment",
+        "v": "3000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Annoncé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC015"
+  },
+  {
+    "id": "DC016",
+    "name": "Pantheon AI – Croatia €50Bn Campus",
+    "type": "Parent",
+    "value": 54000,
+    "region": "Europe",
+    "country": "Croatia",
+    "city": "Zagreb",
+    "announced": "2025 Q1",
+    "start": "2027 Q1",
+    "end": "2032 Q4",
+    "phase": "announced",
+    "overview": "Pantheon AI planifie un campus datacenter AI de €50 milliards en Croatie. Le plus grand investissement datacenter jamais annoncé en Europe. Le campus Atlas ciblera les workloads AI hyperscale.",
+    "summaryShort": "€50Mrd campus AI Croatie. Plus grand investissement DC EU.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure"
+    ],
+    "momentum": 2,
+    "funding": "Not Funded / Unconfirmed",
+    "sector": "Data Center",
+    "source": "https://pantheon.ai",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Pantheon AI",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": ""
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "50000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Campus Atlas annoncé."
+    ],
+    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "source_hash": "DC016"
   }
 ]
