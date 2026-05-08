@@ -611,6 +611,31 @@ function getContacts(p) {
 }
 
 // CARDS
+function getPrescriptionStatus(p) {
+  const phase = p.phase || '';
+  const tenders = p.tenders || [];
+  const awardedTenders = tenders.filter(t => t.awardedTo && t.awardedTo.trim());
+  const openTenders = tenders.filter(t => !t.awardedTo || !t.awardedTo.trim());
+  const hasDesign = (p.contacts||[]).some(c => c.role && (c.role.includes('Design') || c.role.includes('Engineering')));
+  const hasEPC = (p.contacts||[]).some(c => c.role && c.role.includes('EPC'));
+  const hasPM = (p.contacts||[]).some(c => c.role && c.role.includes('Management'));
+
+  if (phase === 'completed') return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
+  if (phase === 'construction') {
+    if (awardedTenders.length > 0 || (hasDesign && hasEPC))
+      return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
+    return { label: 'Probablement prescrit', cls: 'presc-done', icon: '~', confidence: 'medium' };
+  }
+  if (phase === 'admin') {
+    if (hasDesign || hasPM) return { label: 'Prescription en cours', cls: 'presc-ongoing', icon: '◑', confidence: 'medium' };
+    if (openTenders.length > 0) return { label: 'AO ouvert', cls: 'presc-open', icon: '!', confidence: 'high' };
+    return { label: 'Prescription probable', cls: 'presc-ongoing', icon: '~', confidence: 'low' };
+  }
+  if (phase === 'announced') return { label: 'Trop tot - surveiller', cls: 'presc-unknown', icon: '○', confidence: 'high' };
+  return { label: 'Statut inconnu', cls: 'presc-unknown', icon: '?', confidence: 'low' };
+}
+
+
 function renderCards() {
   const grid = document.getElementById('cardsGrid');
   const start = (currentPage-1)*PER_PAGE;
@@ -908,30 +933,6 @@ function dl(rows, fname) {
 // ============================================================
 // PRESCRIPTION STATUS
 // ============================================================
-function getPrescriptionStatus(p) {
-  const phase = p.phase || '';
-  const tenders = p.tenders || [];
-  const awardedTenders = tenders.filter(t => t.awardedTo && t.awardedTo.trim());
-  const openTenders = tenders.filter(t => !t.awardedTo || !t.awardedTo.trim());
-  const hasDesign = (p.contacts||[]).some(c => c.role && (c.role.includes('Design') || c.role.includes('Engineering')));
-  const hasEPC = (p.contacts||[]).some(c => c.role && c.role.includes('EPC'));
-  const hasPM = (p.contacts||[]).some(c => c.role && c.role.includes('Management'));
-
-  if (phase === 'completed') return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
-  if (phase === 'construction') {
-    if (awardedTenders.length > 0 || (hasDesign && hasEPC))
-      return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
-    return { label: 'Probablement prescrit', cls: 'presc-done', icon: '~', confidence: 'medium' };
-  }
-  if (phase === 'admin') {
-    if (hasDesign || hasPM) return { label: 'Prescription en cours', cls: 'presc-ongoing', icon: '◑', confidence: 'medium' };
-    if (openTenders.length > 0) return { label: 'AO ouvert', cls: 'presc-open', icon: '!', confidence: 'high' };
-    return { label: 'Prescription probable', cls: 'presc-ongoing', icon: '~', confidence: 'low' };
-  }
-  if (phase === 'announced') return { label: 'Trop tot - surveiller', cls: 'presc-unknown', icon: '○', confidence: 'high' };
-  return { label: 'Statut inconnu', cls: 'presc-unknown', icon: '?', confidence: 'low' };
-}
-
 
 async function loadData() {
   const statusEl = document.getElementById('data-status');
