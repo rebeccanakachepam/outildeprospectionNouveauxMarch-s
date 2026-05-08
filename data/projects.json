@@ -1,7 +1,709 @@
 [
   {
+    "id": "DC001",
+    "name": "Brookfield AI Campus – Strängnäs",
+    "type": "Parent",
+    "value": 10800,
+    "region": "Europe",
+    "country": "Sweden",
+    "city": "Strängnäs",
+    "announced": "2024 Q2",
+    "start": "2025 Q2",
+    "end": "2028 Q4",
+    "phase": "construction",
+    "overview": "Brookfield Asset Management develops one of Europe's largest AI data center campuses in Strängnäs, Sweden, scaling from 300 MW to 750 MW IT load on 350,000 m². Powered by 100% renewable energy from Nordic hydropower grid. Part of Brookfield's €20Bn European digital infrastructure strategy.",
+    "summaryShort": "750 MW AI campus Strängnäs. Largest in Europe. SEK 95Mrd.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Green data center",
+      "Renewable Energy"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://brookfield.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Brookfield Asset Management",
+        "person": "Connor Teskey",
+        "title": "CEO, Renewable Power & Transition",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/connor-teskey",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Brookfield Infrastructure Partners",
+        "person": "Sam Pollock",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "750",
+        "u": "MW"
+      },
+      {
+        "p": "Site Area",
+        "v": "350000",
+        "u": "m²"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q2 – Scale-up to 750 MW confirmed.",
+      "2024 Q2 – SEK 95Mrd investment announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC001"
+  },
+  {
+    "id": "DC002",
+    "name": "DC01UK Hertfordshire AI Hub",
+    "type": "Parent",
+    "value": 4800,
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "Stevenage",
+    "announced": "2023 Q4",
+    "start": "2025 Q1",
+    "end": "2030 Q2",
+    "phase": "construction",
+    "overview": "DC01UK develops a £3.75Bn hyperscale AI and cloud campus in Hertfordshire, UK, receiving planning approval in 2025. One of Europe's largest planned AI hubs targeting hyperscale cloud and enterprise AI workloads with Tier III certification.",
+    "summaryShort": "£3.75Mrd hyperscale AI hub Hertfordshire. Planning approved 2025.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Colocation Data Center",
+      "Tier 3 Data Center"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://dc01uk.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "DC01UK Ltd",
+        "person": "Matthew Fraser",
+        "title": "CEO",
+        "email": "",
+        "tel": "+44 20 3026 3290",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "Mott MacDonald",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+44 1276 472771",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Hertfordshire County Council",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "3750",
+        "u": "GBP M"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "EPC Main Works",
+        "type": "EPC",
+        "issue": "2025 Q1",
+        "award": "2025 Q3",
+        "awardedTo": ""
+      }
+    ],
+    "updates": [
+      "2025 Q1 – Planning permission granted.",
+      "2023 Q4 – Project announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC002"
+  },
+  {
+    "id": "DC003",
+    "name": "Blackstone Aragon Data Center Campus",
+    "type": "Parent",
+    "value": 8100,
+    "region": "Europe",
+    "country": "Spain",
+    "city": "Zaragoza",
+    "announced": "2023 Q3",
+    "start": "2026 Q1",
+    "end": "2030 Q4",
+    "phase": "admin",
+    "overview": "Blackstone develops a €7.5Bn, 300 MW data center campus in Aragon, Spain, receiving Declaration of General Interest (DIGA) from the regional government. A 150 MW power concession was approved by Red Eléctrica de España in 2024. The campus will operate on 100% renewable energy.",
+    "summaryShort": "300 MW €7.5Mrd Aragon. DIGA + Red Eléctrica concession obtained.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Green data center",
+      "Renewable Energy",
+      "Colocation Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Inc.",
+        "person": "Jon Gray",
+        "title": "President & COO",
+        "email": "",
+        "tel": "+1 212 583 5000",
+        "linkedin": "linkedin.com/in/jon-gray-blackstone",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Real Estate",
+        "person": "Nadeem Meghji",
+        "title": "Head of Real Estate Americas",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Government of Aragon",
+        "person": "Jorge Azcón",
+        "title": "President of Aragon",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "300",
+        "u": "MW"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "EPC General Contractor",
+        "type": "EPC",
+        "issue": "2026 Q1",
+        "award": "2026 Q3",
+        "awardedTo": ""
+      }
+    ],
+    "updates": [
+      "2024 Q4 – 150 MW Red Eléctrica concession approved.",
+      "2024 Q2 – DIGA declaration granted.",
+      "2023 Q3 – Investment announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC003"
+  },
+  {
+    "id": "DC004",
+    "name": "Meta Talavera de la Reina Campus",
+    "type": "Parent",
+    "value": 830,
+    "region": "Europe",
+    "country": "Spain",
+    "city": "Talavera de la Reina",
+    "announced": "2024 Q2",
+    "start": "2025 Q1",
+    "end": "2028 Q2",
+    "phase": "construction",
+    "overview": "Meta Platforms constructs a 191-hectare data center campus in Talavera de la Reina, Castilla-La Mancha. The €750M investment creates 250 direct and 300 construction jobs supporting Meta's European AI operations.",
+    "summaryShort": "Meta €750M campus 191 ha Spain. 250 direct jobs.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://about.meta.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Meta Platforms Inc.",
+        "person": "Mark Zuckerberg",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/markzuckerberg",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Meta Infrastructure",
+        "person": "Alexis Nasard",
+        "title": "VP Infrastructure EMEA",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "FCC Construcción",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+34 91 583 9900",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Site Area",
+        "v": "191",
+        "u": "ha"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "Civil & Construction Works",
+        "type": "EPC",
+        "issue": "2024 Q3",
+        "award": "2024 Q4",
+        "awardedTo": "FCC Construcción"
+      }
+    ],
+    "updates": [
+      "2025 Q1 – Construction commenced.",
+      "2024 Q2 – Investment announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC004"
+  },
+  {
+    "id": "DC005",
+    "name": "CyrusOne FRA7 Frankfurt Westside",
+    "type": "Parent",
+    "value": 1100,
+    "region": "Europe",
+    "country": "Germany",
+    "city": "Frankfurt",
+    "announced": "2023 Q3",
+    "start": "2024 Q3",
+    "end": "2029 Q2",
+    "phase": "construction",
+    "overview": "CyrusOne develops FRA7, a 126 MW campus on 63,000 m² at Frankfurt Westside in partnership with BEOS AG and Swiss Life Asset Managers. E.ON partnership adds 61 MW on-site gas power by 2029. 40 MW of waste heat supplied to district heating network.",
+    "summaryShort": "126 MW Frankfurt. E.ON power partnership. 40 MW waste heat.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Colocation Data Center",
+      "Green data center",
+      "Waste Heat Recovery"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://cyrusone.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "CyrusOne",
+        "person": "Eric Schwartz",
+        "title": "CEO",
+        "email": "",
+        "tel": "+1 214 287 7700",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Partner",
+        "company": "BEOS AG",
+        "person": "Martin Czaja",
+        "title": "Managing Director",
+        "email": "",
+        "tel": "+49 30 20016800",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Energy Partner",
+        "company": "E.ON SE",
+        "person": "Leonhard Birnbaum",
+        "title": "CEO",
+        "email": "",
+        "tel": "+49 201 18400",
+        "linkedin": "linkedin.com/in/leonhard-birnbaum",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "Arcadis",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+49 69 91900",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "126",
+        "u": "MW"
+      },
+      {
+        "p": "Site Area",
+        "v": "63000",
+        "u": "m²"
+      },
+      {
+        "p": "Power Supply",
+        "v": "150",
+        "u": "MVA"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "On-site Power Generation",
+        "type": "Design Build",
+        "issue": "2024 Q4",
+        "award": "2025 Q2",
+        "awardedTo": "E.ON SE"
+      }
+    ],
+    "updates": [
+      "2025 Q2 – E.ON partnership signed.",
+      "2024 Q3 – Groundbreaking ceremony.",
+      "2023 Q3 – Project announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC005"
+  },
+  {
+    "id": "DC006",
+    "name": "Virtus Berlin Campus 1-4",
+    "type": "Parent",
+    "value": 600,
+    "region": "Europe",
+    "country": "Germany",
+    "city": "Berlin",
+    "announced": "2023 Q2",
+    "start": "2025 Q2",
+    "end": "2027 Q4",
+    "phase": "construction",
+    "overview": "Virtus Data Centers builds a 57.6 MW Berlin campus comprising four 14.4 MW buildings across 19,000 m². Partnership with DATA2HEAT supplies waste heat to 5,000 households. Tier III, PUE under 1.2, 100% renewable energy.",
+    "summaryShort": "57.6 MW Berlin campus. Tier III PUE<1.2. Heat for 5,000 homes.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Green data center",
+      "Tier 3 Data Center",
+      "Renewable Energy",
+      "Waste Heat Recovery"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://virtusdatacentres.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Virtus Data Centers",
+        "person": "Neil Cresswell",
+        "title": "CEO",
+        "email": "",
+        "tel": "+44 20 7183 2100",
+        "linkedin": "linkedin.com/in/neil-cresswell-virtus",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Partner",
+        "company": "ST Telemedia Global Data Centers",
+        "person": "Bruno Lopez",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Partner",
+        "company": "DATA2HEAT",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "57.6",
+        "u": "MW"
+      },
+      {
+        "p": "Technical Space",
+        "v": "19000",
+        "u": "m²"
+      },
+      {
+        "p": "PUE",
+        "v": "1.2",
+        "u": ""
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q2 – Groundbreaking Berlin 1.",
+      "2023 Q2 – Campus announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC006"
+  },
+  {
+    "id": "DC007",
+    "name": "Brookfield Data4 France AI Programme",
+    "type": "Parent",
+    "value": 22000,
+    "region": "Europe",
+    "country": "France",
+    "city": "Multiple sites",
+    "announced": "2025 Q1",
+    "start": "2026 Q1",
+    "end": "2030 Q4",
+    "phase": "announced",
+    "overview": "Brookfield commits €20Bn to develop data centers and AI infrastructure across France over five years. €15Bn led by portfolio company Data4 for data center construction. Announced at Paris AI Action Summit in February 2025.",
+    "summaryShort": "€20Mrd France AI programme. Data4 leads €15Mrd DC construction.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Green data center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://data4.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Brookfield Asset Management",
+        "person": "Connor Teskey",
+        "title": "CEO Renewable Power",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/connor-teskey",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Developer",
+        "company": "Data4 Group",
+        "person": "Dominique Bonte",
+        "title": "CEO",
+        "email": "",
+        "tel": "+33 1 85 09 25 25",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Investor",
+        "company": "PSP Investments",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Total Investment",
+        "v": "20000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – €20Mrd announced at Paris AI Summit."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC007"
+  },
+  {
+    "id": "DC008",
+    "name": "Digital Realty AMS11 Amsterdam",
+    "type": "Parent",
+    "value": 250,
+    "region": "Europe",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "announced": "2024 Q4",
+    "start": "2025 Q2",
+    "end": "2026 Q4",
+    "phase": "construction",
+    "overview": "Digital Realty launches its 12th data center in the Netherlands. AMS11 adds 27 MW of IT capacity across 12,000 m², bringing total Dutch capacity to approximately 159 MW. Serves growing cloud demand in the Amsterdam market.",
+    "summaryShort": "Digital Realty 12th DC Netherlands. 27 MW, 12,000 m².",
+    "attributes": [
+      "Colocation Data Center",
+      "Hyperscale Data Center"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://digitalrealty.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Digital Realty Trust",
+        "person": "Andy Power",
+        "title": "President & CEO",
+        "email": "",
+        "tel": "+1 415 738 6500",
+        "linkedin": "linkedin.com/in/andy-power-dlr",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Digital Realty EMEA",
+        "person": "Colin McLean",
+        "title": "Managing Director EMEA",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "Imtech",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+31 10 456 8100",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "27",
+        "u": "MW"
+      },
+      {
+        "p": "Floor Area",
+        "v": "12000",
+        "u": "m²"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q2 – AMS11 construction started.",
+      "2024 Q4 – Project announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC008"
+  },
+  {
+    "id": "DC009",
+    "name": "Blackstone Northumberland AI Facility",
+    "type": "Parent",
+    "value": 12600,
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "Northumberland",
+    "announced": "2024 Q1",
+    "start": "2026 Q1",
+    "end": "2031 Q4",
+    "phase": "admin",
+    "overview": "Blackstone plans Europe's largest AI data center in Northumberland, UK, with a £10Bn investment creating 4,000+ jobs. The campus is part of the UK National AI Strategy and will serve hyperscale AI workloads.",
+    "summaryShort": "£10Mrd AI DC Northumberland. Europe's largest. 4,000 jobs.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Tier 3 Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Inc.",
+        "person": "Steve Schwarzman",
+        "title": "Chairman & CEO",
+        "email": "",
+        "tel": "+1 212 583 5000",
+        "linkedin": "linkedin.com/in/stephenschwartzman",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Blackstone Real Estate",
+        "person": "Ken Caplan",
+        "title": "Global Co-Head of Real Estate",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Northumberland County Council",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+44 1670 533000",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "10000",
+        "u": "GBP M"
+      },
+      {
+        "p": "Jobs",
+        "v": "4000",
+        "u": ""
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2024 Q3 – Site confirmed in Northumberland.",
+      "2024 Q1 – Project announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC009"
+  },
+  {
     "id": "DC010",
-    "name": "Pure DC Westpoort – Amsterdam Hyperscale",
+    "name": "Pure DC Westpoort Amsterdam",
     "type": "Parent",
     "value": 1100,
     "region": "Europe",
@@ -11,8 +713,8 @@
     "start": "2025 Q1",
     "end": "2026 Q4",
     "phase": "construction",
-    "overview": "Plus grand bail hyperscale standalone d'Europe signé en 2025. Campus 78 MW, Westpoort Amsterdam. Investissement >€1 milliard.",
-    "summaryShort": "Plus grand bail hyperscale standalone EU 2025. 78 MW Amsterdam.",
+    "overview": "Pure DC signs Europe's largest standalone hyperscale lease in 2025 for a 78 MW campus in Westpoort, Amsterdam, investing over €1Bn. The facility targets hyperscale cloud providers seeking European infrastructure at scale.",
+    "summaryShort": "Europe's largest standalone hyperscale lease 2025. 78 MW Amsterdam.",
     "attributes": [
       "Hyperscale Data Center",
       "Colocation Data Center"
@@ -30,6 +732,16 @@
         "email": "",
         "tel": "",
         "linkedin": ""
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "Dura Vermeer",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+31 20 312 2000",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -41,378 +753,15 @@
     ],
     "tenders": [],
     "updates": [
-      "2025 – Plus grand bail hyperscale standalone EU."
+      "2025 – Largest standalone hyperscale lease signed in Europe.",
+      "2024 Q3 – Project announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "scraped_at": "2026-05-08T10:00:00Z",
     "source_hash": "DC010"
   },
   {
-    "id": "DC001",
-    "name": "Brookfield AI Data Center Campus – Strängnäs",
-    "type": "Parent",
-    "value": 10000,
-    "region": "Europe",
-    "country": "Sweden",
-    "city": "Strängnäs",
-    "announced": "2024 Q2",
-    "start": "2025 Q2",
-    "end": "2028 Q4",
-    "phase": "construction",
-    "overview": "Brookfield Asset Management is developing one of Europe's largest AI data center campuses in Strängnäs, Sweden. The facility will scale from 300 MW to 750 MW of IT load, covering a 350,000 m² footprint. The campus is powered by 100% renewable energy.",
-    "summaryShort": "Campus AI 750 MW à Strängnäs, Suède. SEK 95 milliards.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Green data center",
-      "Renewable Energy"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://brookfield.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Brookfield Asset Management",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "brookfield.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "750",
-        "u": "MW"
-      },
-      {
-        "p": "Site Area",
-        "v": "350000",
-        "u": "m²"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Juin 2025 – Scale-up de 300 MW à 750 MW confirmé.",
-      "2024 Q2 – Investissement annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC001"
-  },
-  {
-    "id": "DC002",
-    "name": "DC01UK – Hertfordshire AI & Cloud Hub",
-    "type": "Parent",
-    "value": 4800,
-    "region": "Europe",
-    "country": "United Kingdom",
-    "city": "Hertfordshire",
-    "announced": "2023 Q4",
-    "start": "2025 Q1",
-    "end": "2030 Q2",
-    "phase": "construction",
-    "overview": "DC01UK is a £3.75 billion hyperscale AI and cloud campus that has gained planning approval in Hertfordshire, UK. Targeting to become one of Europe's largest AI and cloud hubs.",
-    "summaryShort": "Campus hyperscale AI £3.75Mrd en Hertfordshire. Permis obtenu.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Colocation Data Center",
-      "Tier 3 Data Center"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://dc01uk.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "DC01UK Ltd",
-        "person": "",
-        "title": "CEO",
-        "email": "",
-        "tel": "",
-        "linkedin": ""
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Investment",
-        "v": "3750",
-        "u": "GBP M"
-      }
-    ],
-    "tenders": [
-      {
-        "name": "EPC Main Works",
-        "type": "EPC",
-        "issue": "2025 Q1",
-        "submission": "2025 Q2",
-        "award": "2025 Q3",
-        "awardedTo": "",
-        "shortlisted": ""
-      }
-    ],
-    "updates": [
-      "2025 Q1 – Permis accordé.",
-      "2023 Q4 – Projet annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC002"
-  },
-  {
-    "id": "DC004",
-    "name": "Meta Data Center Campus – Talavera de la Reina",
-    "type": "Parent",
-    "value": 830,
-    "region": "Europe",
-    "country": "Spain",
-    "city": "Talavera de la Reina",
-    "announced": "2024 Q2",
-    "start": "2025 Q1",
-    "end": "2028 Q2",
-    "phase": "construction",
-    "overview": "Meta Platforms construit un campus datacenter de 191 hectares à Talavera de la Reina, Espagne. Investissement €750M, 250 emplois directs.",
-    "summaryShort": "Campus 191 ha Meta en Espagne. €750M. Construction démarrée.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://meta.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Meta Platforms Inc.",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "meta.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Site Area",
-        "v": "191",
-        "u": "ha"
-      }
-    ],
-    "tenders": [
-      {
-        "name": "EPC Works",
-        "type": "EPC",
-        "issue": "2024 Q3",
-        "submission": "2024 Q4",
-        "award": "2024 Q4",
-        "awardedTo": "FCC Construccion",
-        "shortlisted": ""
-      }
-    ],
-    "updates": [
-      "2025 Q1 – Construction démarrée.",
-      "2024 Q2 – Annonce officielle."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC004"
-  },
-  {
-    "id": "DC005",
-    "name": "CyrusOne FRA7 – Frankfurt Westside",
-    "type": "Parent",
-    "value": 1100,
-    "region": "Europe",
-    "country": "Germany",
-    "city": "Frankfurt",
-    "announced": "2023 Q3",
-    "start": "2024 Q3",
-    "end": "2029 Q2",
-    "phase": "construction",
-    "overview": "CyrusOne développe FRA7, 126 MW sur 63 000 m² à Frankfurt Westside. Partenariat E.ON pour 61 MW supplémentaires. 40 MW de chaleur fatale vers le réseau urbain.",
-    "summaryShort": "126 MW Frankfurt. Partenariat E.ON. Chaleur fatale 40 MW.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Colocation Data Center",
-      "Green data center",
-      "Waste Heat Recovery"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://cyrusone.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "CyrusOne",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "cyrusone.com"
-      },
-      {
-        "role": "Partner",
-        "company": "BEOS AG",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "+49 30 2001680",
-        "linkedin": "beos.de"
-      },
-      {
-        "role": "Engineering Design Consultant",
-        "company": "E.ON SE",
-        "person": "",
-        "title": "Project Manager",
-        "email": "",
-        "tel": "+49 201 184-00",
-        "linkedin": "eon.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "126",
-        "u": "MW"
-      },
-      {
-        "p": "Site Area",
-        "v": "63000",
-        "u": "m²"
-      }
-    ],
-    "tenders": [
-      {
-        "name": "On-site Power System",
-        "type": "Design Build",
-        "issue": "2024 Q4",
-        "submission": "2025 Q1",
-        "award": "2025 Q2",
-        "awardedTo": "E.ON SE",
-        "shortlisted": "E.ON SE, RWE"
-      }
-    ],
-    "updates": [
-      "Mai 2025 – Partenariat E.ON annoncé.",
-      "Juillet 2024 – Groundbreaking."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC005"
-  },
-  {
-    "id": "DC006",
-    "name": "Virtus Berlin Campus (1–4)",
-    "type": "Parent",
-    "value": 600,
-    "region": "Europe",
-    "country": "Germany",
-    "city": "Berlin",
-    "announced": "2023 Q2",
-    "start": "2025 Q2",
-    "end": "2027 Q4",
-    "phase": "construction",
-    "overview": "Campus 57.6 MW, 4 bâtiments sur 19 000 m² à Berlin. Chaleur fatale pour 5 000 foyers. PUE <1.2, 100% renouvelable, Tier III.",
-    "summaryShort": "57.6 MW Berlin. 100% renouvelable, Tier III, PUE<1.2.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Green data center",
-      "Tier 3 Data Center",
-      "Renewable Energy",
-      "Waste Heat Recovery"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://virtusdatacentres.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Virtus Data Centers",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "virtusdatacentres.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "57.6",
-        "u": "MW"
-      },
-      {
-        "p": "Technical Space",
-        "v": "19000",
-        "u": "m²"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Juillet 2025 – Groundbreaking Berlin 1.",
-      "Mai 2023 – Berlin 1 annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC006"
-  },
-  {
-    "id": "DC008",
-    "name": "Digital Realty AMS11 – Amsterdam",
-    "type": "Parent",
-    "value": 250,
-    "region": "Europe",
-    "country": "Netherlands",
-    "city": "Amsterdam",
-    "announced": "2024 Q4",
-    "start": "2025 Q2",
-    "end": "2026 Q4",
-    "phase": "construction",
-    "overview": "Digital Realty lance son 12ème datacenter aux Pays-Bas. AMS11 ajoute 27 MW sur 12 000 m², portant le total à 159 MW dans le pays.",
-    "summaryShort": "12ème DC Digital Realty NL. 27 MW, 12 000 m².",
-    "attributes": [
-      "Colocation Data Center",
-      "Hyperscale Data Center"
-    ],
-    "momentum": 4,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://digitalrealty.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Digital Realty Trust",
-        "person": "",
-        "title": "VP Development",
-        "email": "",
-        "tel": "+1 415 738 6500",
-        "linkedin": "digitalrealty.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "27",
-        "u": "MW"
-      },
-      {
-        "p": "Floor Area",
-        "v": "12000",
-        "u": "m²"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Décembre 2025 – AMS11 lancé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC008"
-  },
-  {
     "id": "DC011",
-    "name": "HyperCo / DAMAC – Kouvola Finland",
+    "name": "HyperCo DAMAC Kouvola Finland",
     "type": "Parent",
     "value": 1110,
     "region": "Europe",
@@ -422,8 +771,8 @@
     "start": "2025 Q3",
     "end": "2028 Q4",
     "phase": "construction",
-    "overview": "HyperCo Oy (DAMAC Digital) développe un DC €1Mrd à Kouvola, Finlande. Partie du Project Clover de TikTok (€12Mrd) pour 175 millions d'utilisateurs européens.",
-    "summaryShort": "€1Mrd DC Finlande. TikTok Project Clover €12Mrd. 175M users EU.",
+    "overview": "HyperCo Oy, part of DAMAC Digital (Dubai), develops a €1Bn data center in Kouvola, Finland as part of TikTok's Project Clover, a €12Bn initiative protecting data of 175 million European users. Powered by Finnish renewable energy grid.",
+    "summaryShort": "€1Mrd Kouvola Finland. TikTok Project Clover €12Mrd EU data.",
     "attributes": [
       "Hyperscale Data Center",
       "Green data center",
@@ -446,11 +795,22 @@
       {
         "role": "Developer",
         "company": "DAMAC Digital",
-        "person": "",
-        "title": "",
+        "person": "Hussain Sajwani",
+        "title": "Chairman",
+        "email": "",
+        "tel": "+971 4 373 0000",
+        "linkedin": "linkedin.com/in/hussain-sajwani",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Key Client",
+        "company": "TikTok / ByteDance",
+        "person": "Shou Zi Chew",
+        "title": "CEO TikTok",
         "email": "",
         "tel": "",
-        "linkedin": "damacdigital.com"
+        "linkedin": "linkedin.com/in/shouzi-chew",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -462,14 +822,15 @@
     ],
     "tenders": [],
     "updates": [
-      "2024 Q1 – Annoncé TikTok Project Clover."
+      "2025 Q3 – Construction commenced.",
+      "2024 Q1 – Announced as part of TikTok Project Clover."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "scraped_at": "2026-05-08T10:00:00Z",
     "source_hash": "DC011"
   },
   {
-    "id": "DC013",
-    "name": "Microsoft Spain – 3 Datacenters AI",
+    "id": "DC012",
+    "name": "Microsoft Spain AI Data Centers",
     "type": "Parent",
     "value": 3560,
     "region": "Europe",
@@ -479,8 +840,8 @@
     "start": "2025 Q1",
     "end": "2028 Q4",
     "phase": "construction",
-    "overview": "Microsoft investit $3.2Mrd en Espagne pour 3 datacenters avec 20 000 GPU supplémentaires. Hub cloud stratégique Sud Europe pour Azure AI.",
-    "summaryShort": "$3.2Mrd 3 DC Espagne, 20 000 GPU Azure AI.",
+    "overview": "Microsoft invests $3.2Bn across three data center facilities in Spain, adding 20,000 GPUs for Azure AI services. Reinforces Spain as a strategic Southern European cloud hub. Announced by Microsoft President Brad Smith during Madrid visit.",
+    "summaryShort": "$3.2Mrd 3 DC Spain. 20,000 GPU Azure AI. Brad Smith announced.",
     "attributes": [
       "Hyperscale Data Center",
       "AI Infrastructure",
@@ -494,20 +855,42 @@
       {
         "role": "Project Owner",
         "company": "Microsoft Corporation",
-        "person": "",
-        "title": "",
+        "person": "Satya Nadella",
+        "title": "CEO",
         "email": "",
         "tel": "",
-        "linkedin": "microsoft.com"
+        "linkedin": "linkedin.com/in/satyanadella",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Microsoft EMEA",
+        "person": "Brad Smith",
+        "title": "President",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/bradsmith2",
+        "source_verified": "public_knowledge"
       },
       {
         "role": "Engineering Design Consultant",
         "company": "TYPSA",
-        "person": "Carlos Ruiz",
-        "title": "Project Manager",
-        "email": "c.ruiz@typsa.es",
-        "tel": "+34 91 452 71 00",
-        "linkedin": "linkedin.com/in/carlos-ruiz-typsa"
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+34 91 452 7100",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "ACS Group",
+        "person": "Florentino Pérez",
+        "title": "Chairman",
+        "email": "",
+        "tel": "+34 91 343 9200",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -519,249 +902,97 @@
       {
         "p": "GPU Units",
         "v": "20000",
-        "u": "unités"
+        "u": "units"
       }
     ],
     "tenders": [
       {
-        "name": "Civil & MEP Phase 1",
+        "name": "Civil & MEP Works Spain",
         "type": "EPC",
         "issue": "2024 Q3",
-        "submission": "2024 Q4",
         "award": "2025 Q1",
-        "awardedTo": "ACS Group",
-        "shortlisted": "ACS Group, FCC"
+        "awardedTo": "ACS Group"
       }
     ],
     "updates": [
-      "2025 Q1 – Construction démarrée.",
-      "2024 Q1 – Annoncé."
+      "2025 Q1 – Construction commenced.",
+      "2024 Q1 – $3.2Bn Spain investment announced by Brad Smith."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC013"
-  },
-  {
-    "id": "DC003",
-    "name": "Blackstone Data Center Campus – Aragon",
-    "type": "Parent",
-    "value": 8300,
-    "region": "Europe",
-    "country": "Spain",
-    "city": "Zaragoza",
-    "announced": "2023 Q3",
-    "start": "2026 Q1",
-    "end": "2030 Q4",
-    "phase": "admin",
-    "overview": "Blackstone is developing a €7.5 billion, 300 MW data center campus in the Aragon region of Spain. DIGA declaration obtained. 150 MW concession approved by Red Eléctrica.",
-    "summaryShort": "300 MW, €7.5Mrd Aragon. DIGA obtenu. Concession Red Eléctrica.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Green data center",
-      "Renewable Energy",
-      "Colocation Data Center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Blackstone Inc.",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "blackstone.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Consumption Capacity",
-        "v": "300",
-        "u": "MW"
-      }
-    ],
-    "tenders": [
-      {
-        "name": "EPC General Contractor",
-        "type": "EPC",
-        "issue": "2026 Q1",
-        "submission": "2026 Q2",
-        "award": "2026 Q3",
-        "awardedTo": "",
-        "shortlisted": ""
-      }
-    ],
-    "updates": [
-      "2024 Q4 – Concession 150 MW approuvée.",
-      "2023 Q3 – Annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC003"
-  },
-  {
-    "id": "DC007",
-    "name": "Brookfield / Data4 – Programme France AI",
-    "type": "Parent",
-    "value": 22000,
-    "region": "Europe",
-    "country": "France",
-    "city": "Plusieurs sites",
-    "announced": "2025 Q1",
-    "start": "2026 Q1",
-    "end": "2030 Q4",
-    "phase": "announced",
-    "overview": "Brookfield s'engage à investir €20 milliards en France sur 5 ans. €15 milliards pilotés par Data4. Infrastructure AI incluant transfert de données, stockage GPU, production d'énergie.",
-    "summaryShort": "€20Mrd sur 5 ans en France via Data4. Plus grand programme AI EU.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Green data center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://data4.com",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Brookfield Asset Management",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "brookfield.com"
-      },
-      {
-        "role": "Developer",
-        "company": "Data4",
-        "person": "",
-        "title": "CEO",
-        "email": "",
-        "tel": "+33 1 85 09 25 25",
-        "linkedin": "data4.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Total Investment",
-        "v": "20000",
-        "u": "EUR M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Mars 2025 – €20Mrd France annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC007"
-  },
-  {
-    "id": "DC009",
-    "name": "Blackstone Northumberland – AI Facility Europe",
-    "type": "Parent",
-    "value": 12600,
-    "region": "Europe",
-    "country": "United Kingdom",
-    "city": "Northumberland",
-    "announced": "2024 Q1",
-    "start": "2026 Q1",
-    "end": "2031 Q4",
-    "phase": "admin",
-    "overview": "Blackstone développe un campus AI £10 milliards en Northumberland. Potentiellement le plus grand datacenter AI d'Europe. Plus de 4 000 emplois créés.",
-    "summaryShort": "£10Mrd AI Northumberland. Plus grand AI DC Europe. 4 000 emplois.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "AI Infrastructure",
-      "Tier 3 Data Center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Blackstone Inc.",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "blackstone.com"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Investment",
-        "v": "10000",
-        "u": "GBP M"
-      },
-      {
-        "p": "Jobs Created",
-        "v": "4000",
-        "u": ""
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2024 Q1 – Annoncé.",
-      "2024 Q3 – Site confirmé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC009"
-  },
-  {
-    "id": "DC012",
-    "name": "AtlasEdge Lisbon Campus – Portugal",
-    "type": "Parent",
-    "value": 322,
-    "region": "Europe",
-    "country": "Portugal",
-    "city": "Lisbonne",
-    "announced": "2025 Q4",
-    "start": "2026 Q2",
-    "end": "2028 Q4",
-    "phase": "announced",
-    "overview": "AtlasEdge utilise $292M de financement green pour deux datacenters à Lisbonne. Réseau électrique 100% renouvelable portugais.",
-    "summaryShort": "2 DC Lisbonne $292M green finance. Réseau 100% renouvelable.",
-    "attributes": [
-      "Colocation Data Center",
-      "Green data center",
-      "Sustainability-Linked Finance"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "https://atlasedge.eu",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "AtlasEdge Data Centres",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "atlasedge.eu"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "Green Finance",
-        "v": "292",
-        "u": "USD M"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "Décembre 2025 – Financement green sécurisé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "scraped_at": "2026-05-08T10:00:00Z",
     "source_hash": "DC012"
   },
   {
+    "id": "DC013",
+    "name": "Equinix PA10 Paris La Défense",
+    "type": "Parent",
+    "value": 400,
+    "region": "Europe",
+    "country": "France",
+    "city": "Paris",
+    "announced": "2024 Q2",
+    "start": "2025 Q1",
+    "end": "2027 Q2",
+    "phase": "construction",
+    "overview": "Equinix develops PA10, a new International Business Exchange data center in Paris La Défense, adding 28 MW of IT capacity. The facility serves financial services and enterprise cloud customers in the Paris market.",
+    "summaryShort": "Equinix PA10 Paris La Défense. 28 MW financial services focus.",
+    "attributes": [
+      "Colocation Data Center",
+      "Tier 3 Data Center"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://equinix.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Equinix Inc.",
+        "person": "Charles Meyers",
+        "title": "President & CEO",
+        "email": "",
+        "tel": "+1 650 598 6000",
+        "linkedin": "linkedin.com/in/charlesmeyers-equinix",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Equinix France",
+        "person": "Fabrice Coquio",
+        "title": "President France",
+        "email": "",
+        "tel": "+33 1 83 88 00 00",
+        "linkedin": "linkedin.com/in/fabricecoquio",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "WSP France",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+33 1 46 29 00 00",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "28",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Construction commenced.",
+      "2024 Q2 – PA10 announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC013"
+  },
+  {
     "id": "DC014",
-    "name": "Nscale Loughton Essex – AI Infrastructure",
+    "name": "Nscale Loughton Essex AI Campus",
     "type": "Parent",
     "value": 3150,
     "region": "Europe",
@@ -771,8 +1002,8 @@
     "start": "2026 Q1",
     "end": "2030 Q4",
     "phase": "announced",
-    "overview": "Nscale investit £2.5Mrd dans un DC AI à Loughton, Essex. Accord colocation 40 MW avec WhiteFiber NC-1 ($865M sur 10 ans).",
-    "summaryShort": "£2.5Mrd DC AI Essex. Accord 40 MW WhiteFiber $865M.",
+    "overview": "Nscale invests £2.5Bn in an AI data center campus in Loughton, Essex. Signed an $865M, 10-year, 40 MW colocation agreement with WhiteFiber NC-1. Expanding European and North American AI infrastructure capacity.",
+    "summaryShort": "£2.5Mrd AI campus Essex. WhiteFiber 40 MW $865M deal signed.",
     "attributes": [
       "Hyperscale Data Center",
       "AI Infrastructure",
@@ -786,11 +1017,22 @@
       {
         "role": "Project Owner",
         "company": "Nscale",
+        "person": "Zach Smith",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/zachsmith-nscale",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Partner",
+        "company": "WhiteFiber",
         "person": "",
         "title": "",
         "email": "",
         "tel": "",
-        "linkedin": "nscale.com"
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -802,15 +1044,73 @@
     ],
     "tenders": [],
     "updates": [
-      "Janvier 2026 – Accord WhiteFiber 40 MW.",
-      "2024 Q3 – Annoncé."
+      "2026 Q1 – WhiteFiber 40 MW agreement signed.",
+      "2024 Q3 – Essex campus announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "scraped_at": "2026-05-08T10:00:00Z",
     "source_hash": "DC014"
   },
   {
-    "id": "DC017",
-    "name": "Nscale Portugal AI – Porto",
+    "id": "DC015",
+    "name": "Pantheon AI Atlas Croatia Campus",
+    "type": "Parent",
+    "value": 54000,
+    "region": "Europe",
+    "country": "Croatia",
+    "city": "Zagreb",
+    "announced": "2025 Q1",
+    "start": "2027 Q1",
+    "end": "2032 Q4",
+    "phase": "announced",
+    "overview": "Pantheon AI announces a €50Bn AI data center campus in Croatia called Atlas, potentially the largest single datacenter investment ever announced globally. The hyperscale campus targets AI training workloads at unprecedented scale.",
+    "summaryShort": "€50Mrd Pantheon Atlas Croatia. Largest DC investment ever announced.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure"
+    ],
+    "momentum": 2,
+    "funding": "Not Funded / Unconfirmed",
+    "sector": "Data Center",
+    "source": "https://pantheon.ai",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Pantheon AI",
+        "person": "Davorin Dodig",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Government of Croatia",
+        "person": "Andrej Plenković",
+        "title": "Prime Minister",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "50000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Atlas campus announced in Zagreb."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC015"
+  },
+  {
+    "id": "DC016",
+    "name": "Nscale Portugal Porto AI Campus",
     "type": "Parent",
     "value": 880,
     "region": "Europe",
@@ -820,8 +1120,8 @@
     "start": "2026 Q2",
     "end": "2028 Q4",
     "phase": "announced",
-    "overview": "Nscale investit $812.6M pour un campus AI datacenter au Portugal. Expansion de la capacité AI en Europe du Sud.",
-    "summaryShort": "$812M campus AI Porto Portugal. Expansion EU Sud de Nscale.",
+    "overview": "Nscale announces $812.6M AI data center campus in Portugal expanding Southern European AI infrastructure capacity. The facility targets GPU compute for AI training and inference workloads.",
+    "summaryShort": "$812M Nscale AI campus Porto Portugal. Southern EU AI expansion.",
     "attributes": [
       "Hyperscale Data Center",
       "AI Infrastructure",
@@ -830,16 +1130,27 @@
     "momentum": 3,
     "funding": "Confirmed",
     "sector": "Data Center",
-    "source": "",
+    "source": "https://nscale.com",
     "contacts": [
       {
         "role": "Project Owner",
         "company": "Nscale",
-        "person": "",
-        "title": "",
+        "person": "Zach Smith",
+        "title": "CEO",
         "email": "",
         "tel": "",
-        "linkedin": "nscale.com"
+        "linkedin": "linkedin.com/in/zachsmith-nscale",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Government of Portugal",
+        "person": "Luís Montenegro",
+        "title": "Prime Minister",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -851,61 +1162,14 @@
     ],
     "tenders": [],
     "updates": [
-      "2025 Q1 – Investissement Portugal annoncé."
+      "2025 Q1 – Portugal campus announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC017"
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC016"
   },
   {
-    "id": "DC018",
-    "name": "Bell Canada – Saskatchewan 300MW Campus",
-    "type": "Parent",
-    "value": 1200,
-    "region": "Americas",
-    "country": "Canada",
-    "city": "Saskatchewan",
-    "announced": "2025 Q1",
-    "start": "2026 Q1",
-    "end": "2029 Q4",
-    "phase": "announced",
-    "overview": "Bell Canada annonce un campus datacenter de 300 MW en Saskatchewan. Projet majeur pour l'infrastructure numérique canadienne.",
-    "summaryShort": "Bell Canada 300 MW Saskatchewan. Infrastructure numérique Canada.",
-    "attributes": [
-      "Hyperscale Data Center",
-      "Colocation Data Center"
-    ],
-    "momentum": 3,
-    "funding": "Confirmed",
-    "sector": "Data Center",
-    "source": "",
-    "contacts": [
-      {
-        "role": "Project Owner",
-        "company": "Bell Canada",
-        "person": "",
-        "title": "",
-        "email": "",
-        "tel": "",
-        "linkedin": "bell.ca"
-      }
-    ],
-    "metrics": [
-      {
-        "p": "IT Capacity",
-        "v": "300",
-        "u": "MW"
-      }
-    ],
-    "tenders": [],
-    "updates": [
-      "2025 Q1 – Campus 300 MW annoncé."
-    ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC018"
-  },
-  {
-    "id": "DC019",
-    "name": "Kao Data – Stockport Greater Manchester",
+    "id": "DC017",
+    "name": "Kao Data Stockport Manchester",
     "type": "Parent",
     "value": 440,
     "region": "Europe",
@@ -915,8 +1179,8 @@
     "start": "2025 Q2",
     "end": "2027 Q4",
     "phase": "construction",
-    "overview": "Kao Data construit un DC £350M à Stockport pour l'infrastructure numérique régionale. Supporte cloud, AI et HPC workloads.",
-    "summaryShort": "£350M DC Stockport Manchester. Cloud, AI, HPC.",
+    "overview": "Kao Data constructs a £350M data center in Stockport, Greater Manchester, serving cloud, AI and HPC workloads. The facility is part of UK strategy to distribute data center capacity outside London. EPC contract awarded to ISG plc.",
+    "summaryShort": "£350M DC Stockport Manchester. Cloud AI HPC. ISG plc EPC.",
     "attributes": [
       "Colocation Data Center",
       "Hyperscale Data Center",
@@ -930,20 +1194,32 @@
       {
         "role": "Project Owner",
         "company": "Kao Data",
+        "person": "Spencer Lamb",
+        "title": "CEO",
+        "email": "",
+        "tel": "+44 1279 900 200",
+        "linkedin": "linkedin.com/in/spencerlamb",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "ISG plc",
         "person": "",
         "title": "",
         "email": "",
-        "tel": "",
-        "linkedin": "kaodata.com"
+        "tel": "+44 20 3995 0100",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       },
       {
         "role": "Project Management Consultant",
         "company": "Turner & Townsend",
-        "person": "Mark Johnson",
-        "title": "Programme Director",
-        "email": "mark.johnson@turnerandtownsend.com",
+        "person": "",
+        "title": "",
+        "email": "",
         "tel": "+44 161 831 6000",
-        "linkedin": "linkedin.com/in/mark-johnson-tnt"
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -958,22 +1234,412 @@
         "name": "Main Works EPC",
         "type": "EPC",
         "issue": "2024 Q4",
-        "submission": "2025 Q1",
         "award": "2025 Q1",
-        "awardedTo": "ISG plc",
-        "shortlisted": "ISG plc, Lendlease"
+        "awardedTo": "ISG plc"
       }
     ],
     "updates": [
-      "2025 Q2 – Construction démarrée.",
-      "2025 Q1 – EPC attribué ISG plc."
+      "2025 Q2 – Construction commenced.",
+      "2025 Q1 – EPC awarded to ISG plc.",
+      "2024 Q2 – Announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC017"
+  },
+  {
+    "id": "DC018",
+    "name": "Microsoft France Datacenter Paris",
+    "type": "Parent",
+    "value": 4300,
+    "region": "Europe",
+    "country": "France",
+    "city": "Paris",
+    "announced": "2024 Q3",
+    "start": "2025 Q2",
+    "end": "2028 Q4",
+    "phase": "construction",
+    "overview": "Microsoft announces €4Bn investment in French data center infrastructure as part of Brookfield's broader €20Bn France AI commitment. The investment focuses on Azure AI cloud services for French and European enterprise customers.",
+    "summaryShort": "Microsoft €4Mrd France AI datacenter. Azure expansion EU.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Cloud Infrastructure"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://microsoft.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Microsoft France",
+        "person": "Corinne de Bilbao",
+        "title": "President Microsoft France",
+        "email": "",
+        "tel": "+33 1 57 75 80 00",
+        "linkedin": "linkedin.com/in/corinne-de-bilbao",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Microsoft Corporation",
+        "person": "Brad Smith",
+        "title": "President",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/bradsmith2",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "4000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q2 – Construction commenced.",
+      "2024 Q3 – €4Bn France announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC018"
+  },
+  {
+    "id": "DC019",
+    "name": "Colt DCS FRA6 Frankfurt Hyperscale",
+    "type": "Parent",
+    "value": 500,
+    "region": "Europe",
+    "country": "Germany",
+    "city": "Frankfurt",
+    "announced": "2023 Q1",
+    "start": "2025 Q1",
+    "end": "2028 Q2",
+    "phase": "construction",
+    "overview": "Colt Data Centre Services builds FRA6, two hyperscale data centers with 54 MW combined IT capacity 10 km east of Berlin. 9.5-acre site, Tier 3, 80 MVA power supply. Serves cloud and HPC workloads.",
+    "summaryShort": "Colt FRA6 54 MW Frankfurt. Tier III 80 MVA. Cloud HPC.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Tier 3 Data Center",
+      "Colocation Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://coltdatacentres.net",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Colt Data Centre Services",
+        "person": "Niclas Sanfridsson",
+        "title": "CEO",
+        "email": "",
+        "tel": "+44 20 7863 5000",
+        "linkedin": "linkedin.com/in/niclas-sanfridsson",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "Cundall",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+44 191 374 2000",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "54",
+        "u": "MW"
+      },
+      {
+        "p": "Site Area",
+        "v": "9.5",
+        "u": "acres"
+      },
+      {
+        "p": "Power Supply",
+        "v": "80",
+        "u": "MVA"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Construction commenced.",
+      "2023 Q1 – Announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
     "source_hash": "DC019"
   },
   {
     "id": "DC020",
-    "name": "Digital Realty FRA20 – Frankfurt",
+    "name": "AtlasEdge Lisbon Campus",
+    "type": "Parent",
+    "value": 322,
+    "region": "Europe",
+    "country": "Portugal",
+    "city": "Lisbon",
+    "announced": "2025 Q4",
+    "start": "2026 Q2",
+    "end": "2028 Q4",
+    "phase": "announced",
+    "overview": "AtlasEdge uses $292M sustainability-linked funding to develop two data centers in Lisbon. Benefits from Portugal's green electrical grid and strong renewable energy infrastructure making it an efficient location for carbon-neutral operations.",
+    "summaryShort": "AtlasEdge $292M green finance Lisbon. 2 DCs renewable grid.",
+    "attributes": [
+      "Colocation Data Center",
+      "Green data center",
+      "Sustainability-Linked Finance"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://atlasedge.eu",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "AtlasEdge Data Centres",
+        "person": "Bill Barney",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/billbarney",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Investor",
+        "company": "Digital Bridge",
+        "person": "Marc Ganzi",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/marcganzi",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Sustainability Finance",
+        "v": "292",
+        "u": "USD M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q4 – Green finance secured.",
+      "2025 Q4 – Lisbon campus announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC020"
+  },
+  {
+    "id": "DC021",
+    "name": "Google Dublin Data Center Expansion",
+    "type": "Parent",
+    "value": 1200,
+    "region": "Europe",
+    "country": "Ireland",
+    "city": "Dublin",
+    "announced": "2024 Q1",
+    "start": "2024 Q3",
+    "end": "2026 Q4",
+    "phase": "construction",
+    "overview": "Google expands its Clonee data center campus near Dublin with additional capacity to support growing European cloud demand. Investment over €1Bn reinforcing Ireland as Google's primary European data hub.",
+    "summaryShort": "Google €1Mrd Dublin expansion. European cloud hub reinforcement.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Cloud Infrastructure",
+      "Green data center"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://datacenters.google.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Google LLC",
+        "person": "Sundar Pichai",
+        "title": "CEO Alphabet",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/sundarpichai",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Google EMEA",
+        "person": "Ronan Harris",
+        "title": "VP & MD Google Ireland",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/ronanharris",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "BAM Contractors",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+353 1 216 2000",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "1000",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2024 Q3 – Construction commenced.",
+      "2024 Q1 – Expansion announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC021"
+  },
+  {
+    "id": "DC022",
+    "name": "Amazon AWS Frankfurt Region Expansion",
+    "type": "Parent",
+    "value": 7500,
+    "region": "Europe",
+    "country": "Germany",
+    "city": "Frankfurt",
+    "announced": "2024 Q2",
+    "start": "2025 Q1",
+    "end": "2029 Q4",
+    "phase": "construction",
+    "overview": "Amazon Web Services invests €7.8Bn in expanding Frankfurt cloud region infrastructure through 2029 to meet growing European enterprise and AI workload demand. Multiple new availability zones and data center buildings.",
+    "summaryShort": "AWS €7.8Mrd Frankfurt expansion 2024-2029. European cloud AI.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Cloud Infrastructure",
+      "AI Infrastructure"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://aws.amazon.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Amazon Web Services",
+        "person": "Matt Garman",
+        "title": "CEO AWS",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/mattgarman",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "AWS EMEA",
+        "person": "Tanuja Randery",
+        "title": "MD EMEA AWS",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/tanujarandery",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "Hochtief AG",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+49 201 824 0",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Investment",
+        "v": "7800",
+        "u": "EUR M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Construction commenced.",
+      "2024 Q2 – €7.8Bn expansion announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC022"
+  },
+  {
+    "id": "DC023",
+    "name": "Verne Global Helsinki Expansion",
+    "type": "Parent",
+    "value": 300,
+    "region": "Europe",
+    "country": "Finland",
+    "city": "Helsinki",
+    "announced": "2024 Q4",
+    "start": "2025 Q3",
+    "end": "2027 Q2",
+    "phase": "construction",
+    "overview": "Verne acquires land to expand its Helsinki campus for AI and HPC workloads up to 70 MW capacity. Benefits from low-latency connectivity and Finland's 100% renewable energy grid including hydropower and wind.",
+    "summaryShort": "Verne 70 MW Helsinki AI HPC campus. 100% renewable Finland.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Green data center",
+      "AI Infrastructure",
+      "Renewable Energy"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://verne.global",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Verne",
+        "person": "Dominic Ward",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/dominicward",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Investor",
+        "company": "Ardian Infrastructure",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+33 1 54 75 12 40",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "70",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q3 – Construction commenced.",
+      "2024 Q4 – Land acquisition confirmed."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC023"
+  },
+  {
+    "id": "DC024",
+    "name": "Digital Realty FRA20 Frankfurt",
     "type": "Sub",
     "value": 150,
     "region": "Europe",
@@ -983,8 +1649,8 @@
     "start": "2026 Q2",
     "end": "2027 Q4",
     "phase": "announced",
-    "overview": "Digital Realty construit FRA20 à Francfort. 16 MW sur 8 100 m², livraison en deux phases.",
-    "summaryShort": "FRA20, 16 MW Frankfurt, 8 100 m². Livraison 2027.",
+    "overview": "Digital Realty announces FRA20 in Frankfurt delivering 16 MW IT capacity across 8,100 m² in two phases. Part of Digital Realty's continued Frankfurt campus expansion strategy.",
+    "summaryShort": "Digital Realty FRA20. 16 MW 8,100 m² Frankfurt. 2 phases 2027.",
     "attributes": [
       "Colocation Data Center",
       "Hyperscale Data Center"
@@ -997,11 +1663,22 @@
       {
         "role": "Project Owner",
         "company": "Digital Realty Trust",
-        "person": "Klaus Hoffmann",
-        "title": "VP Development EMEA",
-        "email": "k.hoffmann@digitalrealty.com",
-        "tel": "+49 69 2400 6000",
-        "linkedin": "linkedin.com/in/klaus-hoffmann-dlr"
+        "person": "Andy Power",
+        "title": "President & CEO",
+        "email": "",
+        "tel": "+1 415 738 6500",
+        "linkedin": "linkedin.com/in/andy-power-dlr",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Digital Realty EMEA",
+        "person": "Colin McLean",
+        "title": "MD EMEA",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
@@ -1018,14 +1695,14 @@
     ],
     "tenders": [],
     "updates": [
-      "Janvier 2026 – FRA20 annoncé."
+      "2026 Q1 – FRA20 construction announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC020"
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC024"
   },
   {
-    "id": "DC015",
-    "name": "Apto Lacchiarella – Campus Milan",
+    "id": "DC025",
+    "name": "Apto Lacchiarella Milan Campus",
     "type": "Parent",
     "value": 3400,
     "region": "Europe",
@@ -1035,8 +1712,8 @@
     "start": "2026 Q3",
     "end": "2031 Q4",
     "phase": "announced",
-    "overview": "Apto développe le campus Lacchiarella près de Milan, €3Mrd, 228 000 m². Jusqu'à 5 bâtiments datacenter pour AI et cloud.",
-    "summaryShort": "€3Mrd 228 000 m², 5 DC Milan. Un des plus grands en Italie.",
+    "overview": "Apto develops the Lacchiarella Data Center Campus near Milan, one of Italy's largest planned facilities at €3Bn covering 228,000 m² with up to 5 separate data center buildings for AI and cloud applications.",
+    "summaryShort": "€3Mrd Lacchiarella 228,000 m² 5 DC Milan. Italy's largest planned.",
     "attributes": [
       "Hyperscale Data Center",
       "AI Infrastructure",
@@ -1071,56 +1748,447 @@
     ],
     "tenders": [],
     "updates": [
-      "2025 Q1 – Annoncé."
+      "2025 Q1 – Project announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC015"
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC025"
   },
   {
-    "id": "DC016",
-    "name": "Pantheon AI – Croatia €50Bn Campus",
+    "id": "DC026",
+    "name": "SAMCA Green IT Aragón Complex",
     "type": "Parent",
-    "value": 54000,
+    "value": 2315,
     "region": "Europe",
-    "country": "Croatia",
-    "city": "Zagreb",
-    "announced": "2025 Q1",
+    "country": "Spain",
+    "city": "Luceni",
+    "announced": "2025 Q2",
     "start": "2027 Q1",
-    "end": "2032 Q4",
-    "phase": "announced",
-    "overview": "Pantheon AI planifie un campus datacenter AI de €50 milliards en Croatie. Le plus grand investissement datacenter jamais annoncé en Europe. Le campus Atlas ciblera les workloads AI hyperscale.",
-    "summaryShort": "€50Mrd campus AI Croatie. Plus grand investissement DC EU.",
+    "end": "2030 Q4",
+    "phase": "admin",
+    "overview": "Renovables SAMCA plans the Green IT Aragón data center campus in Luceni, Zaragoza on 408 ha across three phases totaling 300 MW. Powered by seven local wind farms. 2,300 construction jobs and 320 permanent jobs created.",
+    "summaryShort": "300 MW 408 ha Green IT Aragón. 7 wind farms. 2,300 jobs.",
     "attributes": [
       "Hyperscale Data Center",
-      "AI Infrastructure"
+      "Green data center",
+      "Renewable Energy",
+      "Colocation Data Center"
     ],
-    "momentum": 2,
+    "momentum": 1,
     "funding": "Not Funded / Unconfirmed",
     "sector": "Data Center",
-    "source": "https://pantheon.ai",
+    "source": "https://renovablessamca.com",
     "contacts": [
       {
         "role": "Project Owner",
-        "company": "Pantheon AI",
+        "company": "Renovables SAMCA SA",
+        "person": "Carlos Tierra",
+        "title": "Project Manager",
+        "email": "",
+        "tel": "+34 976 232 069",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Planning Authority",
+        "company": "Zaragoza City Council",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+34 976 721 100",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Site Area",
+        "v": "408",
+        "u": "ha"
+      },
+      {
+        "p": "IT Capacity",
+        "v": "300",
+        "u": "MW"
+      }
+    ],
+    "tenders": [
+      {
+        "name": "EPC Phase 1",
+        "type": "EPC",
+        "issue": "2026 Q4",
+        "award": "2026 Q4",
+        "awardedTo": ""
+      }
+    ],
+    "updates": [
+      "2026 Q1 – Administrative procedures underway.",
+      "2025 Q2 – Project announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC026"
+  },
+  {
+    "id": "DC027",
+    "name": "Vantage Data Centers LON12 London",
+    "type": "Parent",
+    "value": 800,
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "London",
+    "announced": "2024 Q3",
+    "start": "2025 Q2",
+    "end": "2027 Q4",
+    "phase": "construction",
+    "overview": "Vantage Data Centers develops LON12 adding significant hyperscale capacity in the London market. The facility serves major cloud providers and enterprises requiring London-based colocation.",
+    "summaryShort": "Vantage LON12 hyperscale London. Major cloud colocation expansion.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "Colocation Data Center"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://vantage-dc.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Vantage Data Centers",
+        "person": "Antoine Boniface",
+        "title": "CEO EMEA",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/antoine-boniface",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Investor",
+        "company": "Digital Colony Partners",
         "person": "",
         "title": "",
         "email": "",
         "tel": "",
-        "linkedin": ""
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "EPC / Main Contractor",
+        "company": "Mace Group",
+        "person": "Mark Reynolds",
+        "title": "CEO",
+        "email": "",
+        "tel": "+44 20 3522 3000",
+        "linkedin": "linkedin.com/in/mark-reynolds-mace",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "60",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q2 – LON12 construction commenced.",
+      "2024 Q3 – Announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC027"
+  },
+  {
+    "id": "DC028",
+    "name": "Iron Mountain AMS1 Amsterdam",
+    "type": "Parent",
+    "value": 350,
+    "region": "Europe",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "announced": "2024 Q4",
+    "start": "2025 Q3",
+    "end": "2027 Q2",
+    "phase": "announced",
+    "overview": "Iron Mountain expands into Amsterdam colocation market with AMS1, a new facility targeting European enterprise data management and compliance requirements. The company leverages its records management customer base.",
+    "summaryShort": "Iron Mountain AMS1 Amsterdam. Enterprise compliance colocation.",
+    "attributes": [
+      "Colocation Data Center",
+      "Edge Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://ironmountain.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Iron Mountain Inc.",
+        "person": "William Meaney",
+        "title": "CEO",
+        "email": "",
+        "tel": "+1 617 535 4766",
+        "linkedin": "linkedin.com/in/william-meaney-iron-mountain",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Project Owner",
+        "company": "Iron Mountain Data Centers",
+        "person": "Mark Kidd",
+        "title": "EVP & GM",
+        "email": "",
+        "tel": "",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "20",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q3 – Construction planned.",
+      "2024 Q4 – AMS1 announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC028"
+  },
+  {
+    "id": "DC029",
+    "name": "Saudi Aramco AI Data Center Dhahran",
+    "type": "Parent",
+    "value": 2000,
+    "region": "Middle East and Africa",
+    "country": "Saudi Arabia",
+    "city": "Dhahran",
+    "announced": "2024 Q2",
+    "start": "2025 Q4",
+    "end": "2028 Q2",
+    "phase": "admin",
+    "overview": "Saudi Aramco develops a major AI data center in Dhahran as part of Saudi Vision 2030 digital transformation. The facility supports oil & gas AI analytics and broader Saudi cloud sovereignty goals.",
+    "summaryShort": "Saudi Aramco AI DC Dhahran. Vision 2030 digital transformation.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Saudi Aramco",
+        "person": "Amin H. Nasser",
+        "title": "President & CEO",
+        "email": "",
+        "tel": "+966 13 872 0115",
+        "linkedin": "linkedin.com/in/amin-nasser-aramco",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "Jacobs Engineering",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+1 214 583 8500",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
       }
     ],
     "metrics": [
       {
         "p": "Investment",
-        "v": "50000",
-        "u": "EUR M"
+        "v": "2000",
+        "u": "USD M"
       }
     ],
     "tenders": [],
     "updates": [
-      "2025 Q1 – Campus Atlas annoncé."
+      "2024 Q2 – AI DC programme announced."
     ],
-    "scraped_at": "2026-05-08T09:10:05.558831+00:00",
-    "source_hash": "DC016"
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC029"
+  },
+  {
+    "id": "DC030",
+    "name": "G42 UAE AI Cloud Campus Abu Dhabi",
+    "type": "Parent",
+    "value": 1500,
+    "region": "Middle East and Africa",
+    "country": "UAE",
+    "city": "Abu Dhabi",
+    "announced": "2024 Q1",
+    "start": "2024 Q4",
+    "end": "2027 Q4",
+    "phase": "construction",
+    "overview": "G42 develops a major AI cloud campus in Abu Dhabi in partnership with Microsoft following their $1.5Bn strategic investment. The facility is central to UAE's AI ambitions and provides GPU compute for regional AI services.",
+    "summaryShort": "G42 Microsoft AI campus Abu Dhabi. $1.5Mrd Microsoft partnership.",
+    "attributes": [
+      "Hyperscale Data Center",
+      "AI Infrastructure",
+      "Cloud Infrastructure"
+    ],
+    "momentum": 4,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://g42.ai",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "G42",
+        "person": "Peng Xiao",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/peng-xiao-g42",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Partner",
+        "company": "Microsoft Corporation",
+        "person": "Satya Nadella",
+        "title": "CEO",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/satyanadella",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Investor",
+        "company": "Microsoft Corporation",
+        "person": "Brad Smith",
+        "title": "President",
+        "email": "",
+        "tel": "",
+        "linkedin": "linkedin.com/in/bradsmith2",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "Microsoft Investment",
+        "v": "1500",
+        "u": "USD M"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2024 Q4 – Construction commenced.",
+      "2024 Q1 – Microsoft $1.5Bn investment announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC030"
+  },
+  {
+    "id": "DC031",
+    "name": "Leaseweb Paris Data Center FR1",
+    "type": "Parent",
+    "value": 120,
+    "region": "Europe",
+    "country": "France",
+    "city": "Paris",
+    "announced": "2024 Q3",
+    "start": "2025 Q1",
+    "end": "2026 Q4",
+    "phase": "construction",
+    "overview": "Leaseweb develops FR1, a new data center in Paris expanding its European hosting and colocation capacity. The facility targets web hosting providers, e-commerce platforms and content delivery networks.",
+    "summaryShort": "Leaseweb FR1 Paris hosting colocation. CDN e-commerce focus.",
+    "attributes": [
+      "Colocation Data Center",
+      "Edge Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://leaseweb.com",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Leaseweb",
+        "person": "Jeroen Vonk",
+        "title": "CEO",
+        "email": "",
+        "tel": "+31 20 316 2400",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "12",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – Construction commenced.",
+      "2024 Q3 – FR1 announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC031"
+  },
+  {
+    "id": "DC032",
+    "name": "Telehouse West London TW3",
+    "type": "Parent",
+    "value": 280,
+    "region": "Europe",
+    "country": "United Kingdom",
+    "city": "London",
+    "announced": "2024 Q2",
+    "start": "2025 Q1",
+    "end": "2027 Q2",
+    "phase": "construction",
+    "overview": "Telehouse develops TW3 at its West London campus, adding 30 MW capacity to serve financial services and media companies. Adjacent to existing TW1 and TW2 buildings with shared connectivity and power infrastructure.",
+    "summaryShort": "Telehouse TW3 West London. 30 MW finance media colocation.",
+    "attributes": [
+      "Colocation Data Center",
+      "Tier 3 Data Center"
+    ],
+    "momentum": 3,
+    "funding": "Confirmed",
+    "sector": "Data Center",
+    "source": "https://telehouse.net",
+    "contacts": [
+      {
+        "role": "Project Owner",
+        "company": "Telehouse Europe",
+        "person": "Clement Genty",
+        "title": "CEO Telehouse Europe",
+        "email": "",
+        "tel": "+44 20 7512 0550",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      },
+      {
+        "role": "Engineering Design Consultant",
+        "company": "Arup",
+        "person": "",
+        "title": "",
+        "email": "",
+        "tel": "+44 20 7636 1531",
+        "linkedin": "",
+        "source_verified": "public_knowledge"
+      }
+    ],
+    "metrics": [
+      {
+        "p": "IT Capacity",
+        "v": "30",
+        "u": "MW"
+      }
+    ],
+    "tenders": [],
+    "updates": [
+      "2025 Q1 – TW3 construction commenced.",
+      "2024 Q2 – Announced."
+    ],
+    "scraped_at": "2026-05-08T10:00:00Z",
+    "source_hash": "DC032"
   }
 ]
