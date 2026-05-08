@@ -635,6 +635,14 @@ function getPrescriptionStatus(p) {
   return { label: 'Statut inconnu', cls: 'presc-unknown', icon: '?', confidence: 'low' };
 }
 
+function prescBadgeHTML(p) {
+  const s = getPrescriptionStatus(p);
+  const conf = { high: '', medium: ' · Hypothèse', low: ' · Estimation' }[s.confidence] || '';
+  return `<span class="presc-badge ${s.cls}">${s.icon} ${s.label}</span>${conf ? `<div class="presc-disclaimer">⚠ Statut estimé${conf} — à vérifier</div>` : ''}`;
+}
+
+
+
 
 function renderCards() {
   const grid = document.getElementById('cardsGrid');
