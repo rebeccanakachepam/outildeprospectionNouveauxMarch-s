@@ -641,6 +641,33 @@ function prescBadgeHTML(p) {
   return `<span class="presc-badge ${s.cls}">${s.icon} ${s.label}</span>${conf ? `<div class="presc-disclaimer">⚠ Statut estimé${conf} — à vérifier</div>` : ''}`;
 }
 
+function getCRMStatus(pid) {
+  try { return localStorage.getItem('crm_' + pid) || 'none'; } catch(e) { return 'none'; }
+}
+function setCRMStatus(pid, val) {
+  try { localStorage.setItem('crm_' + pid, val); } catch(e) {}
+}
+function updateCRM(pid, val, sel) {
+  setCRMStatus(pid, val);
+  const dot = sel.parentElement.querySelector('.crm-dot');
+  if (dot) dot.className = 'crm-dot crm-' + val;
+}
+const CRM_LABELS = {
+  none: { label: 'Non contacté', cls: 'crm-none' },
+  contacted: { label: 'Contacté', cls: 'crm-contacted' },
+  meeting: { label: 'RDV pris', cls: 'crm-meeting' },
+  prescribed: { label: 'Prescrit ✓', cls: 'crm-prescribed' }
+};
+function crmStatusHTML(pid) {
+  const val = getCRMStatus(pid);
+  const options = Object.entries(CRM_LABELS).map(([k,v]) =>
+    '<option value="' + k + '"' + (k===val?' selected':'') + '>' + v.label + '</option>'
+  ).join('');
+  return '<div class="manual-status"><div class="manual-status-label"><span class="crm-dot crm-' + val + '"></span> Mon statut commercial</div><select onchange="updateCRM('' + pid + '', this.value, this)" onclick="event.stopPropagation()">' + options + '</select></div>';
+}
+
+
+
 
 
 
