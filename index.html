@@ -917,62 +917,21 @@ function getPrescriptionStatus(p) {
   const hasEPC = (p.contacts||[]).some(c => c.role && c.role.includes('EPC'));
   const hasPM = (p.contacts||[]).some(c => c.role && c.role.includes('Management'));
 
-  if (phase === 'completed') {
-    return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
-  }
+  if (phase === 'completed') return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
   if (phase === 'construction') {
-    if (awardedTenders.length > 0 || (hasDesign && hasEPC)) {
+    if (awardedTenders.length > 0 || (hasDesign && hasEPC))
       return { label: 'Prescrit', cls: 'presc-done', icon: '✓', confidence: 'high' };
-    }
     return { label: 'Probablement prescrit', cls: 'presc-done', icon: '~', confidence: 'medium' };
   }
   if (phase === 'admin') {
-    if (hasDesign || hasPM) {
-      return { label: 'Prescription en cours', cls: 'presc-ongoing', icon: '◑', confidence: 'medium' };
-    }
-    if (openTenders.length > 0) {
-      return { label: 'Appel d'offres ouvert', cls: 'presc-open', icon: '!', confidence: 'high' };
-    }
+    if (hasDesign || hasPM) return { label: 'Prescription en cours', cls: 'presc-ongoing', icon: '◑', confidence: 'medium' };
+    if (openTenders.length > 0) return { label: 'AO ouvert', cls: 'presc-open', icon: '!', confidence: 'high' };
     return { label: 'Prescription probable', cls: 'presc-ongoing', icon: '~', confidence: 'low' };
   }
-  if (phase === 'announced') {
-    return { label: 'Trop tôt — à surveiller', cls: 'presc-unknown', icon: '○', confidence: 'high' };
-  }
+  if (phase === 'announced') return { label: 'Trop tot - surveiller', cls: 'presc-unknown', icon: '○', confidence: 'high' };
   return { label: 'Statut inconnu', cls: 'presc-unknown', icon: '?', confidence: 'low' };
 }
 
-function prescBadgeHTML(p) {
-  const s = getPrescriptionStatus(p);
-  const conf = { high: '', medium: ' · Hypothèse', low: ' · Estimation' }[s.confidence] || '';
-  return `<span class="presc-badge ${s.cls}">${s.icon} ${s.label}</span>
-    ${conf ? `<div class="presc-disclaimer">⚠ Statut estimé${conf} — à vérifier</div>` : ''}`;
-}
-
-function getCRMStatus(projectId) {
-  try { return localStorage.getItem('crm_' + projectId) || 'none'; } catch(e) { return 'none'; }
-}
-function setCRMStatus(projectId, val) {
-  try { localStorage.setItem('crm_' + projectId, val); } catch(e) {}
-}
-const CRM_LABELS = {
-  none: { label: 'Non contacté', dot: 'crm-none' },
-  contacted: { label: 'Contacté', dot: 'crm-contacted' },
-  meeting: { label: 'RDV pris', dot: 'crm-meeting' },
-  prescribed: { label: 'Prescrit ✓', dot: 'crm-prescribed' }
-};
-function crmStatusHTML(projectId) {
-  const val = getCRMStatus(projectId);
-  const options = Object.entries(CRM_LABELS).map(([k,v]) =>
-    `<option value="${k}" ${k===val?'selected':''}>${v.label}</option>`
-  ).join('');
-  const dot = CRM_LABELS[val]?.dot || 'crm-none';
-  return `<div class="manual-status">
-    <div class="manual-status-label"><span class="crm-dot ${dot}"></span> Mon statut commercial</div>
-    <select onchange="setCRMStatus('${projectId}', this.value); this.previousElementSibling.querySelector('.crm-dot').className='crm-dot '+CRM_LABELS[this.value].dot" onclick="event.stopPropagation()">
-      ${options}
-    </select>
-  </div>`;
-}
 
 async function loadData() {
   const statusEl = document.getElementById('data-status');
