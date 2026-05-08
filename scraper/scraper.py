@@ -8,202 +8,194 @@ from bs4 import BeautifulSoup
 import anthropic
 
 # ============================================================
-# SOURCES — RSS feeds (non bloqués) + pages index
+# SOURCES — Google News RSS (jamais bloqué, agrège tout)
 # ============================================================
-RSS_SOURCES = [
-    # DatacenterKnowledge
-    "https://www.datacenterknowledge.com/rss.xml",
-    "https://www.datacenterknowledge.com/feed",
-    # DataCenterDynamics
-    "https://www.datacenterdynamics.com/en/rss/",
-    "https://www.datacenterdynamics.com/en/news/rss/",
-    # DCD (Data Centre Dynamics UK)
-    "https://www.datacenterdynamics.com/rss.xml",
-    # Bonus sources RSS fiables
-    "https://www.theregister.com/data_centre/rss",
-    "https://siliconangle.com/feed/",
+GOOGLE_NEWS_QUERIES = [
+    "datacenter construction Europe 2024 2025",
+    "data center hyperscale MW investment announced",
+    "data centre development EMEA billion",
+    "datacenter campus construction UK France Germany Spain",
+    "hyperscale data center build announced",
+    "colocation data center construction Europe",
+    "AI data center campus investment Europe",
+    "data center MW construction Africa Middle East",
 ]
+
+def google_news_rss(query: str) -> str:
+    q = query.replace(" ", "+")
+    return f"https://news.google.com/rss/search?q={q}&hl=en-US&gl=US&ceid=US:en"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Connection": "keep-alive",
 }
 
 KEYWORDS = [
     "data center", "datacenter", "data centre", "hyperscale",
-    "colocation", "MW", "megawatt", "construction", "campus",
-    "build", "develop", "invest", "billion", "million"
+    "colocation", " MW", "megawatt", "construction", "campus",
+    "billion", "million", "develop", "invest", "build"
 ]
 
 EXTRACTION_PROMPT = """You are a datacenter construction project analyst for a B2B sales intelligence tool.
 
-Analyze the article below and extract ALL datacenter construction, expansion, or development projects mentioned.
+Analyze the article and extract ALL datacenter construction, expansion or development projects mentioned.
 
-For EACH project found, output a JSON object with this exact structure:
+For EACH project, return a JSON object:
 {
   "id": "DC_<6char_hash>",
-  "name": "<Developer/Owner name> <location> Data Center <phase if known>",
+  "name": "<Owner> <City> Data Center",
   "type": "Parent",
-  "value": <budget USD millions as number, 0 if unknown>,
+  "value": <USD millions, 0 if unknown>,
   "region": "<Europe|Middle East and Africa|Asia Pacific|Americas>",
   "country": "<country>",
-  "city": "<city or Multiple>",
+  "city": "<city>",
   "announced": "<YYYY QN>",
   "start": "<YYYY QN or empty>",
   "end": "<YYYY QN or empty>",
   "phase": "<announced|admin|construction|completed>",
-  "overview": "<3-4 sentences about the project>",
-  "summaryShort": "<max 20 words>",
-  "attributes": ["<relevant tags>"],
+  "overview": "<3-4 sentences>",
+  "summaryShort": "<max 15 words>",
+  "attributes": ["<tags>"],
   "momentum": <0-5>,
   "funding": "<Confirmed|Not Funded / Unconfirmed>",
   "sector": "Data Center",
-  "source": "<article url>",
+  "source": "<url>",
   "contacts": [],
-  "metrics": [{"p": "<name>", "v": "<value>", "u": "<unit>"}],
+  "metrics": [{"p":"<name>","v":"<value>","u":"<unit>"}],
   "tenders": [],
-  "updates": ["<date - key update>"],
-  "scraped_at": "<ISO datetime>",
-  "source_hash": "<md5 of url+title>"
+  "updates": ["<date - update>"],
+  "scraped_at": "<ISO>",
+  "source_hash": "<hash>"
 }
 
-Valid attributes: Hyperscale Data Center, Colocation Data Center, AI Infrastructure, Green data center, Renewable Energy, Tier 3 Data Center, Edge Data Center, Waste Heat Recovery, Cloud Infrastructure, Sustainability-Linked Finance
+Valid attributes: Hyperscale Data Center, Colocation Data Center, AI Infrastructure, Green data center, Renewable Energy, Tier 3 Data Center, Edge Data Center, Waste Heat Recovery, Cloud Infrastructure
 
 Rules:
-- Only extract REAL construction/expansion projects with a named location
-- Skip: financial results, layoffs, CEO changes, product launches without construction
-- Convert EUR to USD (*1.08), GBP to USD (*1.26)
-- phase: "announced" if just announced, "admin" if permits/approvals stage, "construction" if building, "completed" if done
-- momentum 0=stalled, 1-2=early, 3=active planning, 4=construction, 5=fast-tracked
-- Return ONLY a valid JSON array. No markdown, no explanation, no code blocks.
+- Only real construction/expansion projects with named location
+- Skip: earnings, layoffs, CEO changes, product launches without construction
+- EUR*1.08=USD, GBP*1.26=USD
+- momentum: 0=stalled, 1-2=early, 3=planning, 4=construction, 5=fast-tracked
+- Return ONLY valid JSON array, no markdown
 
 Article URL: {url}
 Article title: {title}
 Article date: {date}
-Article text:
+Text:
 {text}
 """
 
-def fetch_rss(url: str) -> list[dict]:
-    """Fetch RSS feed and return list of {url, title, date} dicts."""
+def fetch_google_news(query: str) -> list[dict]:
+    url = google_news_rss(query)
     articles = []
     try:
         r = httpx.get(url, headers=HEADERS, timeout=20, follow_redirects=True)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "xml")
-        items = soup.find_all("item") or soup.find_all("entry")
-        for item in items[:20]:
+        for item in soup.find_all("item")[:15]:
             link = item.find("link")
             title = item.find("title")
-            pub = item.find("pubDate") or item.find("published") or item.find("updated")
+            pub = item.find("pubDate")
+            source = item.find("source")
             if link and title:
-                url_val = link.get_text(strip=True) if link.get_text(strip=True) else link.get("href", "")
                 articles.append({
-                    "url": url_val,
+                    "url": link.get_text(strip=True),
                     "title": title.get_text(strip=True),
-                    "date": pub.get_text(strip=True) if pub else ""
+                    "date": pub.get_text(strip=True) if pub else "",
+                    "source_name": source.get_text(strip=True) if source else ""
                 })
     except Exception as e:
-        print(f"  RSS error {url}: {e}")
+        print(f"  Google News error for '{query}': {e}")
     return articles
 
 def is_relevant(title: str) -> bool:
-    """Check if article title contains datacenter keywords."""
-    title_lower = title.lower()
-    return any(kw in title_lower for kw in KEYWORDS)
+    t = title.lower()
+    return any(kw.lower() in t for kw in KEYWORDS)
+
+def resolve_google_url(url: str) -> str:
+    """Google News links redirect — follow to get real URL."""
+    try:
+        r = httpx.get(url, headers=HEADERS, timeout=15, follow_redirects=True)
+        return str(r.url)
+    except Exception:
+        return url
 
 def fetch_article(url: str) -> str:
-    """Fetch article text, return cleaned text."""
     try:
-        time.sleep(1.5)  # polite delay
-        r = httpx.get(url, headers=HEADERS, timeout=25, follow_redirects=True)
+        time.sleep(2)
+        real_url = resolve_google_url(url)
+        r = httpx.get(real_url, headers=HEADERS, timeout=25, follow_redirects=True)
         r.raise_for_status()
         soup = BeautifulSoup(r.text, "html.parser")
-        # Remove noise
-        for tag in soup(["script", "style", "nav", "footer", "header",
-                         "aside", "advertisement", "cookie", "popup"]):
+        for tag in soup(["script","style","nav","footer","header","aside"]):
             tag.decompose()
-        # Try to get article body
-        article = soup.find("article") or soup.find(class_=["article", "post", "content", "entry"])
-        if article:
-            text = article.get_text(separator="\n", strip=True)
-        else:
-            text = soup.get_text(separator="\n", strip=True)
-        # Clean up blank lines
-        lines = [l.strip() for l in text.split("\n") if l.strip()]
-        return "\n".join(lines)[:10000]
+        article = (soup.find("article") or
+                   soup.find(class_=["article-body","post-content","entry-content","story-body"]) or
+                   soup.find("main"))
+        text = article.get_text("\n", strip=True) if article else soup.get_text("\n", strip=True)
+        lines = [l.strip() for l in text.split("\n") if len(l.strip()) > 30]
+        return "\n".join(lines)[:9000]
     except Exception as e:
-        print(f"    Fetch error {url}: {e}")
+        print(f"    Fetch error: {e}")
         return ""
 
 def make_hash(url: str, title: str) -> str:
     return hashlib.md5(f"{url}{title}".encode()).hexdigest()[:8]
 
 def extract_projects(client: anthropic.Anthropic, article: dict, text: str) -> list[dict]:
-    if not text.strip() or len(text) < 200:
+    if not text or len(text) < 150:
         return []
     try:
-        prompt = EXTRACTION_PROMPT.format(
-            url=article["url"],
-            title=article["title"],
-            date=article.get("date", ""),
-            text=text
-        )
         msg = client.messages.create(
-            model="claude-haiku-4-5-20251001",  # cheaper model for extraction
+            model="claude-haiku-4-5-20251001",
             max_tokens=3000,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": EXTRACTION_PROMPT.format(
+                url=article["url"],
+                title=article["title"],
+                date=article.get("date", ""),
+                text=text
+            )}]
         )
         raw = msg.content[0].text.strip()
-        # Clean possible markdown
         if "```" in raw:
-            raw = raw.split("```")[1]
+            parts = raw.split("```")
+            raw = parts[1] if len(parts) > 1 else raw
             if raw.startswith("json"):
                 raw = raw[4:]
         projects = json.loads(raw.strip())
         if isinstance(projects, list):
-            # Add source hash to each
             for p in projects:
                 if not p.get("source_hash"):
                     p["source_hash"] = make_hash(article["url"], article["title"])
-                if not p.get("scraped_at"):
-                    p["scraped_at"] = datetime.now(timezone.utc).isoformat()
-            return projects
-        return []
-    except json.JSONDecodeError as e:
-        print(f"    JSON parse error: {e}")
+                p["scraped_at"] = datetime.now(timezone.utc).isoformat()
+            return [p for p in projects if p.get("country")]  # filter empty
         return []
     except Exception as e:
-        print(f"    Extraction error: {e}")
+        print(f"    Extract error: {e}")
         return []
 
 def load_existing(path: str) -> list[dict]:
     if os.path.exists(path):
-        with open(path, encoding="utf-8") as f:
-            try:
+        try:
+            with open(path, encoding="utf-8") as f:
                 return json.load(f)
-            except Exception:
-                return []
+        except Exception:
+            return []
     return []
 
-def merge(existing: list[dict], new_list: list[dict]) -> tuple[list[dict], int]:
-    seen_hashes = {p.get("source_hash", "") for p in existing if p.get("source_hash")}
-    seen_names = {p.get("name", "").lower()[:40] for p in existing}
+def merge(existing: list, new_list: list) -> tuple[list, int]:
+    seen_hashes = {p.get("source_hash","") for p in existing}
+    seen_names = {p.get("name","").lower()[:50] for p in existing}
     added = 0
     merged = list(existing)
     for p in new_list:
-        h = p.get("source_hash", "")
-        name_key = p.get("name", "").lower()[:40]
-        if h and h in seen_hashes:
-            continue
-        if name_key and name_key in seen_names:
+        h = p.get("source_hash","")
+        name = p.get("name","").lower()[:50]
+        if (h and h in seen_hashes) or (name and name in seen_names):
             continue
         merged.append(p)
         seen_hashes.add(h)
-        seen_names.add(name_key)
+        seen_names.add(name)
         added += 1
     return merged, added
 
@@ -211,7 +203,6 @@ def main():
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         raise ValueError("ANTHROPIC_API_KEY not set")
-
     client = anthropic.Anthropic(api_key=api_key)
 
     data_dir = os.path.join(os.path.dirname(__file__), "..", "data")
@@ -220,51 +211,48 @@ def main():
     meta_path = os.path.join(data_dir, "meta.json")
 
     existing = load_existing(data_path)
-    print(f"Existing projects: {len(existing)}")
+    print(f"Existing: {len(existing)} projects")
 
-    # Collect articles from RSS feeds
+    # Collect articles from Google News
     all_articles = []
     seen_urls = set()
-    for rss_url in RSS_SOURCES:
-        print(f"\nRSS: {rss_url}")
-        articles = fetch_rss(rss_url)
+    for query in GOOGLE_NEWS_QUERIES:
+        print(f"\nQuery: {query}")
+        articles = fetch_google_news(query)
         for a in articles:
             if a["url"] not in seen_urls and is_relevant(a["title"]):
                 seen_urls.add(a["url"])
                 all_articles.append(a)
-        print(f"  → {len([a for a in articles if is_relevant(a['title'])])} relevant articles")
+                print(f"  + {a['title'][:70]}")
+        time.sleep(1)
 
-    print(f"\nTotal relevant articles to process: {len(all_articles)}")
+    print(f"\nTotal articles to process: {len(all_articles)}")
 
-    # Extract projects from articles
     all_new = []
     for i, article in enumerate(all_articles):
-        print(f"[{i+1}/{len(all_articles)}] {article['title'][:60]}...")
+        print(f"\n[{i+1}/{len(all_articles)}] {article['title'][:65]}...")
         text = fetch_article(article["url"])
         if text:
             projects = extract_projects(client, article, text)
-            print(f"  → {len(projects)} projects extracted")
+            print(f"  → {len(projects)} projects")
             all_new.extend(projects)
-        time.sleep(0.5)
+        time.sleep(1)
 
-    # Merge and save
     merged, added = merge(existing, all_new)
-    print(f"\nNew projects added: {added} | Total: {len(merged)}")
+    print(f"\nAdded: {added} | Total: {len(merged)}")
 
-    # Sort by momentum desc, then by scraped_at desc
-    merged.sort(key=lambda p: (p.get("momentum", 0), p.get("scraped_at", "")), reverse=True)
+    merged.sort(key=lambda p: (p.get("momentum",0), p.get("scraped_at","")), reverse=True)
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
 
-    meta = {
-        "last_updated": datetime.now(timezone.utc).isoformat(),
-        "total_projects": len(merged),
-        "new_this_run": added,
-        "articles_processed": len(all_articles)
-    }
     with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2)
+        json.dump({
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "total_projects": len(merged),
+            "new_this_run": added,
+            "articles_processed": len(all_articles)
+        }, f, indent=2)
 
     print("Done.")
 
